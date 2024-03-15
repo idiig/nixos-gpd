@@ -38,15 +38,44 @@
       "zh_CN.UTF-8/UTF-8"
     ];
   };
+  
+  # Fonts
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-extra
+      noto-fonts-emoji
+      #  liberation_ttf
+      fira-code
+      fira-code-symbols
+      # mplus-outline-fonts
+      dina-font
+      proggyfonts
+      dejavu_fonts
+    ];
+    # 
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        sansSerif = [ "Noto Sans CJK JP" "DejaVu Sans" ];
+        serif = [ "Noto Serif JP" "DejaVu Serif" ];
+      };
+      subpixel = { lcdfilter = "light"; };
+    };
+  };  
 
   # Input methods
   i18n = {
     inputMethod = {
       enabled = "fcitx5"; 
-#       fcitx5.addons = with pkgs; [
-#         fcitx5-rime
-#         fcitx5-skk
-#       ];
+      fcitx5.addons = with pkgs; [
+        # Chinese
+        fcitx5-rime
+        fcitx5-chinese-addons
+        # Japanese
+        fcitx5-skk
+      ];
     };
   }; 
   environment = {
@@ -66,9 +95,9 @@
     # displayManager.sddm.enable = true;
     # desktopManager.plasma5.enable = true;
     displayManager.lightdm.enable = true;
-    # displayManager.sessionCommands = ''
-    #   ${pkgs.xorg.xrandr}/bin/xrandr --output DSI-1 --rotate right
-    # '';
+    displayManager.sessionCommands = ''
+      ${pkgs.xorg.xrandr}/bin/xrandr --output DSI-1 --rotate right
+    '';
     desktopManager.xfce.enable = true;
   };
 }

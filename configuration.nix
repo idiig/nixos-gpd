@@ -8,8 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix  # automatically generated file
-      ./windows-boot.nix  #
-      ./better-default.nix
+      ./per-machine/gpd-pocket-3/boot.nix  #
+      ./per-machine/gpd-pocket-3/hardware-configuration-addition.nix
+
+      # General setting
+      ./general/better-default.nix
+
+      # Basic tools
       ./tools/vim.nix
       ./tools/emacs.nix
       ./tools/home-manager.nix
