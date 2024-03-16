@@ -13,25 +13,15 @@ _:{
 	  chainloader (''${root}/EFI/Microsoft/Boot/bootmgfw.efi
 	}
       '';
-      extraConfig = ''
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash apparmor=1 security=apparmor udev.log_priority=3 fbcon=rotate:1 video=DSI-1:panel_orientation=right_side_up" 
-GRUB_CMDLINE_LINUX="quiet splash noautomount fbcon=rotate:1 video=DSI-1:panel_orientation=right_side_up"
-      '';
     };
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
-  };
-  # boot rotation
-  boot.kernelParams = [
-    # "apci=off"
-    "quiet"
-    "splash"
-    "apparmor=1"
-    "security=apparmor"
-    "udev.log_priority=3"
-    "fbcon=rotate:1"
-    "video=DSI-1:panel_orientation=right_side_up"
-  ];
+  }; 
+  # boot.kernelParams = [
+  #   # The GPD Pocket3 uses a tablet OLED display, that is mounted rotated 90° counter-clockwise
+  #   "fbcon=rotate:1" "video=DSI-1:panel_orientation=right_side_up"
+  #   "quiet" "apparmor=1" "security=apparmorudev.log_priority=3"
+  # ];
 }

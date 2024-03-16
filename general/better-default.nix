@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  # Allow unfree
+  nixpkgs.config.allowUnfree = true;
+  
   # Network
   networking = {
     hostName = "nixos";
@@ -61,7 +64,7 @@
         sansSerif = [ "Noto Sans CJK JP" "DejaVu Sans" ];
         serif = [ "Noto Serif JP" "DejaVu Serif" ];
       };
-      subpixel = { lcdfilter = "light"; };
+      # subpixel = { lcdfilter = "light"; };
     };
   };  
 
@@ -94,10 +97,21 @@
     enable = true;
     # displayManager.sddm.enable = true;
     # desktopManager.plasma5.enable = true;
-    displayManager.lightdm.enable = true;
-    displayManager.sessionCommands = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr --output DSI-1 --rotate right
-    '';
-    desktopManager.xfce.enable = true;
+    # displayManager.lightdm.enable = true;
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = haskellPackages: [
+        haskellPackages.xmonad-contrib
+        haskellPackages.xmonad-extras
+        haskellPackages.xmonad
+      ];
+    };
+    desktopManager.xfce = {
+      enable = true;
+      noDesktop = true;
+      enableXfwm = false;
+      # defaultSession = "xfce+xmonad";
+    };
   };
 }

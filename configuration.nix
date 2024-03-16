@@ -7,9 +7,11 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      <nixos-hardware/gpd/pocket-3>
       ./hardware-configuration.nix  # automatically generated file
       ./per-machine/gpd-pocket-3/boot.nix  #
-      ./per-machine/gpd-pocket-3/hardware-configuration-addition.nix
+      # ./per-machine/gpd-pocket-3/default.nix
+      ./per-machine/gpd-pocket-3/additional-config.nix
 
       # General setting
       ./general/better-default.nix
