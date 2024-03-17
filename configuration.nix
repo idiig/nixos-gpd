@@ -17,9 +17,10 @@
       ./general/better-default.nix
 
       # Basic tools
+      ./tools/home-manager.nix
+      ./tools/alacritty.nix
       ./tools/vim.nix
       ./tools/emacs.nix
-      ./tools/home-manager.nix
       ./tools/git.nix
       ./tools/zsh.nix
     ];

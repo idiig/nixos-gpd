@@ -2,10 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    emacs
+    alacritty
   ];
-
-  # programs.emacs = {
-  #   enable = true;
-  # };
 }
