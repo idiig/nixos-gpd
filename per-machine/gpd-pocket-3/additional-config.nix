@@ -11,7 +11,12 @@
   # Display manager lightDM greeter rotation
   # DSI-I for modesetting; DSI for xf86-video-intel
   services.xserver.displayManager.setupCommands = ''
-    ${pkgs.xorg.xrandr}/bin/xrandr --output DSI1 --rotate right  # --mode 1920x1080
+    ${pkgs.xorg.xrandr}/bin/xrandr --output DSI1 --rotate right  # --scale 0.5x0.5
+  '';
+  services.xserver.displayManager.lightdm.greeters.gtk.extraConfig = ''
+    [LightDM]
+    display-setup-script = GDK_SCALE=2
+    greeter-setup-script = GDK_SCALE=2
   '';
 
   # Touch screen

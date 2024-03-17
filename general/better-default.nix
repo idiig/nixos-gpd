@@ -93,13 +93,30 @@
   };
 
   # Display and desktop manager
+  services.getty.autologinUser = "idiig"; 
   services.xserver = {
     enable = true;
-    # displayManager.sddm.enable = true;
     # desktopManager.plasma5.enable = true;
     displayManager = {
       defaultSession = "xfce+xmonad";
-      lightdm.enable = true;
+      autoLogin = {
+        enable = true;
+        user = "idiig";
+      };
+      # sddm.enable = true;
+      # startx.enable = true;
+      lightdm = {
+        enable = true;
+        autoLogin.timeout = 0;
+        greeter.enable = false;
+        # greeters.mini.enable = {
+        #   enable = true;
+        #   user = "idiig";
+        # };
+        # greeters.gtk.enable = true;
+        # greeters.slick.enable = true;
+        # greeters.mini.enable = true;
+      };
     };
     windowManager.xmonad = {
       enable = true;

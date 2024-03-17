@@ -6,7 +6,16 @@
       name = "vim";
       # Plugins
       vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
-        start = [ vim-nix vim-lastplace vim-airline ];
+        start = [ 
+          vim-nix 
+          vim-lastplace 
+          vim-surround
+          vim-repeat
+          vim-commentary
+          vim-easy-align
+          auto-pairs
+          vim-airline
+        ];
         opt = [];
       };
       # VimRC
