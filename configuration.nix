@@ -7,30 +7,31 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      <nixos-hardware/gpd/pocket-3>
+  #     <nixos-hardware/gpd/pocket-3>
       ./hardware-configuration.nix  # automatically generated file
  
-      # General setting
-      ./general/better-default.nix
+  #     # General setting
+  #     ./general/nix.nix
+  #     ./general/defaults.nix
 
-      # Additional config per machine
-     ./per-machine/gpd-pocket-3/boot.nix  #
-      # ./per-machine/gpd-pocket-3/default.nix
-      ./per-machine/gpd-pocket-3/additional-config.nix
+  #     # Additional config per machine
+  #     ./per-machine/gpd-pocket-3/boot.nix  #
+  #     # ./per-machine/gpd-pocket-3/default.nix
+  #     ./per-machine/gpd-pocket-3/additional-config.nix
 
-      # Basic tools
-      ./tools/home-manager.nix
-      ./tools/alacritty.nix
-      ./tools/vim.nix
-      ./tools/emacs.nix
-      ./tools/git.nix
-      ./tools/zsh.nix
+  #     # Basic tools
+  #     ./tools/home-manager.nix
+  #     ./tools/alacritty.nix
+  #     ./tools/vim.nix
+  #     ./tools/emacs.nix
+  #     ./tools/git.nix
+  #     ./tools/zsh.nix
     ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

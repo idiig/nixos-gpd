@@ -17,8 +17,10 @@
   console.useXkbConfig = true;
   services = {
     xserver = {
-      layout = "us";
-      xkbOptions = "ctrl:nocaps";
+      xkb = {
+        layout = "us";
+        options = "ctrl:nocaps";
+      };   
     };
   };
   
@@ -92,29 +94,31 @@
     };
   };
 
-  # Display and desktop manager
+  # tty auto login
   services.getty.autologinUser = "idiig"; 
+  
+  # Display and desktop manager
   services.xserver = {
     enable = true;
-    # desktopManager.plasma5.enable = true;
+    # desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "xfce+xmonad";
-      autoLogin = {
-        enable = true;
-        user = "idiig";
-      };
+      # autoLogin = {
+      #   enable = true;
+      #   user = "idiig";
+      # };
       # sddm.enable = true;
       # startx.enable = true;
       lightdm = {
         enable = true;
-        autoLogin.timeout = 0;
-        greeter.enable = false;
+        greeters.slick.enable = true;
+        # autoLogin.timeout = 0;
+        # greeter.enable = false;
         # greeters.mini.enable = {
         #   enable = true;
         #   user = "idiig";
         # };
         # greeters.gtk.enable = true;
-        # greeters.slick.enable = true;
         # greeters.mini.enable = true;
       };
     };
