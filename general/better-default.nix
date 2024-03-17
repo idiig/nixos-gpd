@@ -64,7 +64,7 @@
         sansSerif = [ "Noto Sans CJK JP" "DejaVu Sans" ];
         serif = [ "Noto Serif JP" "DejaVu Serif" ];
       };
-      # subpixel = { lcdfilter = "light"; };
+      subpixel = { lcdfilter = "light"; };
     };
   };  
 
@@ -97,7 +97,10 @@
     enable = true;
     # displayManager.sddm.enable = true;
     # desktopManager.plasma5.enable = true;
-    # displayManager.lightdm.enable = true;
+    displayManager = {
+      defaultSession = "xfce+xmonad";
+      lightdm.enable = true;
+    };
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
@@ -111,7 +114,6 @@
       enable = true;
       noDesktop = true;
       enableXfwm = false;
-      # defaultSession = "xfce+xmonad";
     };
   };
 }

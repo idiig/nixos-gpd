@@ -4,12 +4,14 @@
   # GPU setting
   # services.xserver = {
     # videoDrivers = [ "amdgpu" ];  # for AMD
-    # videoDrivers = [ "modesetting" "intel" ];
+    # videoDrivers = [ "modesetting" ]
+    # videoDrivers = [ "intel" ];
   # };
 
   # Display manager lightDM greeter rotation
+  # DSI-I for modesetting; DSI for xf86-video-intel
   services.xserver.displayManager.setupCommands = ''
-    ${pkgs.xorg.xrandr}/bin/xrandr --output DSI-1 --rotate right --scale 1x1
+    ${pkgs.xorg.xrandr}/bin/xrandr --output DSI1 --rotate right  # --mode 1920x1080
   '';
 
   # Touch screen
