@@ -100,15 +100,13 @@
   # Display and desktop manager
   services.xserver = {
     enable = true;
-    # desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "xfce+xmonad";
+      # startx.enable = true;
       # autoLogin = {
       #   enable = true;
       #   user = "idiig";
       # };
-      # sddm.enable = true;
-      # startx.enable = true;
       lightdm = {
         enable = true;
         greeters.slick.enable = true;
