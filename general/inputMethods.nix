@@ -16,7 +16,7 @@
     };
   }; 
 
-  services.xserver.desktopManager.runXdgAutostartIfNone;
+  services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
   # environment = {
   #   systemPackages = with pkgs; [
