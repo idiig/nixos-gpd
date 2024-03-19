@@ -7,25 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-  #     <nixos-hardware/gpd/pocket-3>
       ./hardware-configuration.nix  # automatically generated file
- 
-  #     # General setting
-  #     ./general/nix.nix
-  #     ./general/defaults.nix
-
-  #     # Additional config per machine
-  #     ./per-machine/gpd-pocket-3/boot.nix  #
-  #     # ./per-machine/gpd-pocket-3/default.nix
-  #     ./per-machine/gpd-pocket-3/additional-config.nix
-
-  #     # Basic tools
-  #     ./tools/home-manager.nix
-  #     ./tools/alacritty.nix
-  #     ./tools/vim.nix
-  #     ./tools/emacs.nix
-  #     ./tools/git.nix
-  #     ./tools/zsh.nix
     ];
 
   # Copy the NixOS configuration file and link it from the resulting system

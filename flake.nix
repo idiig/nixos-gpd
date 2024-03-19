@@ -2,19 +2,19 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-util.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    # flake-util.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    home-manager.url = "github:nix-community/home-manager";
+    # home-manager.url = "github:nix-community/home-manager";
   };
 
   outputs = { 
     self, 
     nixpkgs, 
     nixos-hardware, 
-    flake-util, 
-    home-manager, 
+    # flake-util, 
+    # home-manager, 
     ... 
   }@attrs: {
 
@@ -27,31 +27,30 @@
       specialArgs = attrs;
       modules = [
 
-        # Default configuration.nix
+        # Automatically generated configuration.nix (Delete boot part)
         ./configuration.nix
 
         # Hardware
         nixos-hardware.nixosModules.gpd-pocket-3
-        ./per-machine/gpd-pocket-3/hardware-configuration.nix
-        
-        # Additional config per machine
+
+        # Boot config
         ./per-machine/gpd-pocket-3/boot.nix  #
-        ./per-machine/gpd-pocket-3/additional-config.nix
+
+        # Display rotation
+        ./per-machine/gpd-pocket-3/rotation.nix
 
         # General setting
-        ./general/nix.nix
-        ./general/default.nix
+        ./general/general.nix
 
         # Basic tools
         ./tools/home-manager.nix
-        ./tools/alacritty.nix
         ./tools/vim.nix
         ./tools/emacs.nix
         ./tools/git.nix
         ./tools/zsh.nix
+        # ./tools/alacritty.nix
 
       ];
     };
-
   };
 }
