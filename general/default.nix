@@ -101,6 +101,7 @@
   services.xserver = {
     enable = true;
     displayManager = {
+      # defaultSession = "xfce";
       defaultSession = "xfce+xmonad";
       # startx.enable = true;
       # autoLogin = {
@@ -128,10 +129,11 @@
         haskellPackages.xmonad-extras
         haskellPackages.xmonad
       ];
+      config = builtins.readFile ./xmonad.hs;
     };
     desktopManager.xfce = {
       enable = true;
-      noDesktop = true;
+      # noDesktop = true;
       enableXfwm = false;
     };
   };
