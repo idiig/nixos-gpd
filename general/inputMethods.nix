@@ -10,18 +10,22 @@
         fcitx5-rime
         fcitx5-chinese-addons
         # Japanese
-        fcitx5-skk
+        # fcitx5-skk
+        fcitx5-mozc
       ];
     };
   }; 
-  environment = {
-    systemPackages = with pkgs; [
-      fcitx5 
-    ];
-    variables = {
-      GTX_IM_MODULE = "fcitx";
-      QT_IM_MODULE = "fcitx";
-      XMODIFIERS = "@im=fcitx";
-    };
-  };
+
+  services.xserver.desktopManager.runXdgAutostartIfNone;
+
+  # environment = {
+  #   systemPackages = with pkgs; [
+  #     fcitx5 
+  #   ];
+  #   variables = {
+  #     GTX_IM_MODULE = "fcitx";
+  #     QT_IM_MODULE = "fcitx";
+  #     XMODIFIERS = "@im=fcitx";
+  #   };
+  # };
 }

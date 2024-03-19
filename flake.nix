@@ -18,9 +18,9 @@
     ... 
   }@attrs: {
 
-    # packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
-    # packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
     
     nixosConfigurations.gpd-pocket-3 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
