@@ -4,8 +4,8 @@
   # General configurations
   imports = [
 
-    # General config 
     ./nix.nix
+    ./basic.nix
 
     ./xserver/xserver.nix
     ./tty-login.nix
