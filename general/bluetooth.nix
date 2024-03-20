@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = [pkgs.blueman]
+  environment.systemPackages = [ pkgs.blueman ];
 
   # Bluetooth
   hardware.bluetooth.enable = true;

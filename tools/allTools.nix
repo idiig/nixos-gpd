@@ -8,6 +8,7 @@
       ./tools/git.nix
       ./tools/zsh.nix
       ./tools/alacritty.nix
+      ./tools/ssh.nix
 
     ];
 }

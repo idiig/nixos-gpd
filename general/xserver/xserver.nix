@@ -1,10 +1,13 @@
-_:
+{ pkgs, ... }:
 
 {
   # Display manager
   # services.desktopManager.plasma6.enable =false;
   services.xserver = {
     enable = true;
+    excludePackages = with pkgs; [
+      xterm
+    ];
     displayManager = {
       # defaultSession = "xfce";
       defaultSession = "xfce+xmonad";
@@ -42,5 +45,15 @@ _:
       # noDesktop = true;
       enableXfwm = false;
     };
+  };
+
+  # Xfce Thunar goodies
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+      thunar-volman
+    ];
   };
 }
