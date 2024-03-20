@@ -26,11 +26,11 @@
     };
   }; 
 
-  environment.variables = {
-    GTX_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-  };
+  # environment.variables = {
+  #   GTX_IM_MODULE = "fcitx";
+  #   QT_IM_MODULE = "fcitx";
+  #   XMODIFIERS = "@im=fcitx";
+  # };
 
   # services.xserver.desktopManager.runXdgAutostartIfNone = true;
 

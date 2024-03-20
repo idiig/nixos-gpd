@@ -8,15 +8,15 @@
     ./nix.nix
 
     ./xserver/xserver.nix
-    ./ttyLogin.nix
+    ./tty-login.nix
 
     ./bluetooth.nix
     ./keyboard.nix
-    ./soundAudio.nix
+    ./sound-audio.nix
     ./network.nix
     
     ./datetime.nix
-    ./CJK.nix
+    ./cjk.nix
     ./fonts.nix
 
   ];
