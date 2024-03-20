@@ -16,21 +16,22 @@
     inputMethod = {
       enabled = "fcitx5"; 
       fcitx5.addons = with pkgs; [
+        fcitx5-gtk
         # Chinese
         fcitx5-rime
         fcitx5-chinese-addons
         # Japanese
-        # fcitx5-skk
-        fcitx5-mozc
+        fcitx5-skk
+        # fcitx5-mozc
       ];
     };
   }; 
 
-  # environment.variables = {
-  #   GTX_IM_MODULE = "fcitx";
-  #   QT_IM_MODULE = "fcitx";
-  #   XMODIFIERS = "@im=fcitx";
-  # };
+  environment.variables = {
+    GTX_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+  };
 
   # services.xserver.desktopManager.runXdgAutostartIfNone = true;
 

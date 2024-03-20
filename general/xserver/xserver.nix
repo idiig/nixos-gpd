@@ -2,6 +2,7 @@ _:
 
 {
   # Display manager
+  # services.desktopManager.plasma6.enable =false;
   services.xserver = {
     enable = true;
     displayManager = {
@@ -12,6 +13,7 @@ _:
       #   enable = true;
       #   user = "idiig";
       # };
+      sddm.enable = false;
       lightdm = {
         enable = true;
         greeters.slick.enable = true;
