@@ -1,8 +1,18 @@
 { pkgs, ... }:
 
 {
-  # Input methods
+
   i18n = {
+    
+    # Language
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8" 
+      "ja_JP.UTF-8/UTF-8"
+      "zh_CN.UTF-8/UTF-8"
+    ];
+
+    # Input methods
     inputMethod = {
       enabled = "fcitx5"; 
       fcitx5.addons = with pkgs; [
@@ -28,4 +38,5 @@
   #     XMODIFIERS = "@im=fcitx";
   #   };
   # };
+
 }

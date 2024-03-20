@@ -15,10 +15,9 @@
     ./soundAudio.nix
     ./network.nix
     
-    ./language.nix
     ./datetime.nix
-    ./font.nix
-    ./inputMethods.nix
+    ./CJK.nix
+    ./fonts.nix
 
   ];
 }
