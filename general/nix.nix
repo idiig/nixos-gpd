@@ -1,4 +1,4 @@
-_:
+{ pkgs, ... }:
 
 {
   # Allow unfree
@@ -9,4 +9,9 @@ _:
     "nix-command"
     "flakes"
   ]; 
+
+  # Home-manager
+  environment.systemPackages = [
+    pkgs.home-manager
+  ];
 }

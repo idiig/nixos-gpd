@@ -43,7 +43,6 @@
         ./general/general.nix
 
         # Basic tools
-        ./tools/home-manager.nix
         ./tools/vim.nix
         ./tools/emacs.nix
         ./tools/git.nix
