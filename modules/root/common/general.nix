@@ -7,7 +7,7 @@
     ./nix.nix
     ./basic.nix
 
-    ./xserver/xserver.nix
+    ./xserver/xfce-xmonad.nix
     ./tty-login.nix
 
     ./bluetooth.nix
@@ -18,6 +18,7 @@
     ./datetime.nix
     ./cjk.nix
     ./fonts.nix
+    ./key-rings.nix
 
   ];
 }

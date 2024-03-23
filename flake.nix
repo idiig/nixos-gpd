@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     # flake-util.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # home-manager.url = "github:nix-community/home-manager";
   };
 
@@ -14,7 +15,7 @@
     nixpkgs, 
     nixos-hardware, 
     # flake-util, 
-    # home-manager, 
+    home-manager, 
     ... 
   }@attrs: {
 
@@ -34,22 +35,30 @@
         nixos-hardware.nixosModules.gpd-pocket-3
 
         # Boot config
-        ./per-machine/gpd-pocket-3/boot.nix  #
+        ./machines/gpd-pocket-3/boot.nix  #
 
         # Display rotation
-        ./per-machine/gpd-pocket-3/rotation.nix
+        ./machines/gpd-pocket-3/rotation.nix
 
         # General setting
-        ./general/general.nix
+        ./modules/root/common/general.nix
 
         # Basic tools
-        ./tools/vim.nix
-        ./tools/emacs.nix
-        ./tools/git.nix
-        ./tools/zsh.nix
-        # ./tools/alacritty.nix
-        ./tools/ssh.nix
+        ./modules/home/app/vim.nix
+        ./modules/home/app/emacs.nix
+        ./modules/home/app/git.nix
+        ./modules/home/app/zsh.nix
+        # ./modules/home/app/alacritty.nix
+        ./modules/home/app/ssh.nix
+        home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            # home-manager.users.idiig-test = import ./users/idiig/home.nix;
+          }
 
+        # Optionally, use home-manager.extraSpecialArgs to pass
+        # arguments to home.nix
       ];
     };
   };

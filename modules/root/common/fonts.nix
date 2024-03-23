@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  # Font manager
+  environment.systemPackages = [ pkgs.font-manager]; 
+
   # Fonts
   fonts = {
     packages = with pkgs; [
