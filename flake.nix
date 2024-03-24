@@ -35,21 +35,18 @@
         nixos-hardware.nixosModules.gpd-pocket-3
 
         # Boot config
-        ./machines/gpd-pocket-3/boot.nix  #
+        ./machines/gpd-pocket-3/boot.nix
 
         # Display rotation
         ./machines/gpd-pocket-3/rotation.nix
 
         # General setting
-        ./modules/root/common/general.nix
+        ./modules/root/default.nix
 
         # Basic tools
-        ./modules/home/app/vim.nix
         ./modules/home/app/emacs.nix
-        ./modules/home/app/git.nix
         ./modules/home/app/zsh.nix
         # ./modules/home/app/alacritty.nix
-        ./modules/home/app/ssh.nix
 
         # ./users/idiig/home.nix
         ./users/idiig/base.nix

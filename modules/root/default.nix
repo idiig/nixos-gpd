@@ -5,20 +5,23 @@
   imports = [
 
     ./nix.nix
-    ./basic.nix
 
-    ./xserver/xfce-xmonad.nix
+    ./x11/xfce-xmonad.nix
     ./tty-login.nix
 
     ./bluetooth.nix
     ./keyboard.nix
     ./sound-audio.nix
-    ./network.nix
+    ./networking.nix
     
     ./datetime.nix
     ./cjk.nix
     ./fonts.nix
     ./key-rings.nix
+
+    ./vim.nix
+    ./git.nix
+    ./misc.nix
 
   ];
 }

@@ -62,22 +62,22 @@
       #   enable = true;
       #   user = "idiig";
       # };
-      # sddm.enable = false;
-      # lightdm = {
-      #   enable = true;
-      #   greeters.slick = {
-      #     enable = true;
-      #     # theme.name = "Adwaita";
-      #   };
-      #   # autoLogin.timeout = 0;
-      #   # greeter.enable = false;
-      #   # greeters.mini.enable = {
-      #   #   enable = true;
-      #   #   user = "idiig";
-      #   # };
-      #   # greeters.gtk.enable = true;
-      #   # greeters.mini.enable = true;
-      # };
+      sddm.enable = false;
+      lightdm = {
+        enable = true;
+        greeters.slick = {
+          enable = true;
+          theme.name = "Adwaita";
+        };
+        # autoLogin.timeout = 0;
+        # greeter.enable = false;
+        # greeters.mini.enable = {
+        #   enable = true;
+        #   user = "idiig";
+        # };
+        # greeters.gtk.enable = true;
+        # greeters.mini.enable = true;
+      };
     };
     windowManager.xmonad = {
       enable = true;
@@ -97,3 +97,4 @@
   };
 
 }
+
