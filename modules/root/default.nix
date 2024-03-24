@@ -21,6 +21,7 @@
 
     ./vim.nix
     ./git.nix
+    ./ssh.nix
     ./command-line-tools.nix
 
   ];
