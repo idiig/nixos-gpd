@@ -1,48 +1,13 @@
-{ config, pkgs, ... }: # let
-  # Use `import` and pass arguments explicitly when not importing a
-  # package definition.
-  #
-  # Technically `callPackage` works, since it just assigns arguments
-  # to an imported function, and `pkgs` is one of the potential
-  # assignments, but we're not calling a package, so let's not
-  # pretend.
-  # mypkgs = import ./gtk-themes/haiku.nix { inherit pkgs; }; 
-  # in 
+{ config, pkgs, ... }: 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "idiig";
-  home.homeDirectory = "/home/idiig";
+  # isSystemUser = true;
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "23.11";
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
+  # Packages
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
     pkgs.hello
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-    
     # Git
     pkgs.git
     
@@ -50,7 +15,6 @@
     pkgs.firefox
 
     # xfce4-themes
-    # mypkgs.Haiku
     (pkgs.callPackage ./gtk-themes/haiku.nix { })
   ];
 
@@ -90,17 +54,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-
-  # # Xfce Thunar goodies
-  # programs.thunar = {
-  #   enable = true;
-  #   plugins = with pkgs.xfce; [
-  #     thunar-archive-plugin
-  #     thunar-media-tags-plugin
-  #     thunar-volman
-  #   ];
-  # };
 
   # Git
   programs.git = {

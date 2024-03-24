@@ -50,11 +50,18 @@
         ./modules/home/app/zsh.nix
         # ./modules/home/app/alacritty.nix
         ./modules/home/app/ssh.nix
+
+        # ./users/idiig/home.nix
+        ./users/idiig/base.nix
         home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            # home-manager.users.idiig-test = import ./users/idiig/home.nix;
+            # home-manager.users.idiig.isSystemUser = true;
+
+            home-manager.users.idiig = import ./users/idiig/home.nix;
+            # home-manager.users.idiig.home.homeDirectory
+
           }
 
         # Optionally, use home-manager.extraSpecialArgs to pass
