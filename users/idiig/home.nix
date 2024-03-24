@@ -4,18 +4,6 @@
 
   home.stateVersion = "23.11";
 
-  # Packages
-  home.packages = [
-    pkgs.hello
-   
-    # Firefox
-    pkgs.firefox
-
-    # xfce4-themes
-    (pkgs.callPackage ./gtk-themes/haiku.nix { })
-
-  ];
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -54,8 +42,12 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ../../modules/home/app/ssh.nix
-    ../../modules/home/app/git.nix
+    ../../modules/home/default.nix
+    # ../../modules/home/app/ssh.nix
+    # ../../modules/home/app/git.nix
+    # ../../modules/home/ui/xfce4.nix
+    # ../../modules/home/app/browser.nix
+    # ../../modules/home/app/reference-management.nix
   ];
 
 

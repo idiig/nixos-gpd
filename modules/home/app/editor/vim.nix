@@ -3,8 +3,9 @@
 {
 
   # Packages
-  home.packages = [
-    pkgs.vim
+  home.packages = with pkgs; [
+    # vim  # comment out for conflict with root/vim
+    neovim
   ];
 
   # Vim

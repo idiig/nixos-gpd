@@ -21,7 +21,7 @@
 
     ./vim.nix
     ./git.nix
-    ./misc.nix
+    ./command-line-tools.nix
 
   ];
 }
