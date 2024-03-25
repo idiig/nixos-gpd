@@ -17,7 +17,13 @@
     # flake-util, 
     home-manager, 
     ... 
-  }@attrs: {
+  }@attrs: 
+
+  let
+    myVars = import ./myvars/gpd-pocket-3-idiig.nix;
+  in 
+
+  {
 
     packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
@@ -31,14 +37,11 @@
         # Automatically generated configuration.nix (Delete boot part)
         ./configuration.nix
 
-        # Hardware
+        # Hardware auto
         nixos-hardware.nixosModules.gpd-pocket-3
 
-        # Boot config
-        ./machines/gpd-pocket-3/boot.nix
-
-        # Display and touch rotation
-        ./machines/gpd-pocket-3/rotation.nix
+        # Machine related extra config
+        machines/${myVars.machine}/extra-configuration.nix
 
         # General setting
         ./modules/root/default.nix
@@ -51,7 +54,7 @@
             home-manager.useUserPackages = true;
             # home-manager.users.idiig.isSystemUser = true;
 
-            home-manager.users.idiig = import ./users/idiig/home.nix;
+            home-manager.users.${myVars.user} = import ./users/${myVars.user}/home.nix;
             # home-manager.users.idiig.home.homeDirectory
 
           }
