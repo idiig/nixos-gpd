@@ -41,7 +41,7 @@
   
     # UI
     ./ui/xfce4.nix
-    ./ui/wallpaper/default.nix
+    ./ui/default-wallpaper.nix
     ../../machines/gpd-pocket-3/home-default.nix
   ];
 }
