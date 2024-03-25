@@ -15,6 +15,8 @@
     jq # A lightweight and flexible command-line JSON processor
     silver-searcher # Ag
     fzf # fuzzy search
+    ranger
+    tmux
 
     # misc
     wget
@@ -26,6 +28,9 @@
     tree
     gnutar
     rsync
+    gnumake
+    openssl
+
   ];
 
 }

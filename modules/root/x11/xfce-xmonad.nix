@@ -89,12 +89,17 @@
       ];
       config = builtins.readFile ./xmonad.hs;
     };
-    desktopManager.xfce = {
-      enable = true;
-      # noDesktop = true;
-      enableXfwm = false;
-    };
+    desktopManager = {
+      xfce = {
+        enable = true;
+        # noDesktop = true;
+        enableXfwm = false;
+      };
+      wallpaper = {
+        combineScreens = false;
+        mode = "center";
+      };
+    }; 
   };
-
 }
 

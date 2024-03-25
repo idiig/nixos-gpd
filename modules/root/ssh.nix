@@ -7,10 +7,20 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = lib.mkDefault false;
 
-  programs.ssh.extraConfig = ''
-    Host github.com
-      IdentityFile /root/.ssh/id_ed25519
-  '';
+  programs = {
+    # The OpenSSH agent remembers private keys for you
+    # so that you don’t have to type in passphrases every time you make an SSH connection.
+    # Use `ssh-add` to add a key to the agent.
+    ssh.startAgent = true;
+    ssh.extraConfig = ''
+      Host github.com
+        IdentityFile /root/.ssh/id_ed25519
+    '';
+
+    # dconf is a low-level configuration system.
+    dconf.enable = true;
+
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh = {
