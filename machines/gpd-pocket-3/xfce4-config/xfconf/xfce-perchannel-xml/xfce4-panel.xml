@@ -58,6 +58,7 @@
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
+      <property name="icon-size" type="int" value="0"/>
       <property name="known-legacy-items" type="array">
         <value type="string" value="wi-fi network connection “waseda” active: waseda (55%)"/>
         <value type="string" value="wi-fi network connection “elecom-de63e0” active: elecom-de63e0 (85%)"/>
@@ -89,7 +90,7 @@
       <property name="style" type="uint" value="0"/>
     </property>
     <property name="plugin-12" type="string" value="clock">
-      <property name="tooltip-format" type="string" value="Week %V"/>
+      <property name="tooltip-format" type="string" value="%A %d %B %Y"/>
       <property name="mode" type="uint" value="2"/>
       <property name="flash-separators" type="bool" value="false"/>
       <property name="fuzziness" type="uint" value="0"/>

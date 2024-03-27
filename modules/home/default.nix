@@ -35,7 +35,9 @@ in
     ./app/word-processor/libreoffice.nix
 
     # cloud-service
-    # ./app/cloud-service/nutstore.nix
+    ./app/cloud-service/nutstore/nutstore.nix
+    ./app/cloud-service/dropbox.nix
+    # (pkgs.callPackage ./gtk-themes/haiku.nix { })
   
     # reference-management
     ./app/reference-management/zotero.nix

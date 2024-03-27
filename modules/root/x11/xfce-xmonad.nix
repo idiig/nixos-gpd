@@ -28,8 +28,6 @@
       # xsel
       # xtitle
       xwinmosaic
-
-      feh
     ];
   };
 
@@ -59,7 +57,7 @@
         user = "idiig";
       };
       sessionCommands = ''
-        ${pkgs.feh}/bin/feh --bg-fill -no-fehbg $HOME/.local/share/backgrounds/default.jpg > $HOME/feh.log 2>&1
+        ${pkgs.feh}/bin/feh --bg-center -no-fehbg $HOME/.local/share/backgrounds/default.jpg & 
       '';
       lightdm = {
         enable = true;
