@@ -52,11 +52,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            # home-manager.users.idiig.isSystemUser = true;
-
             home-manager.users.${myVars.user} = import ./users/${myVars.user}/home.nix;
             # home-manager.users.idiig.home.homeDirectory
-
           }
       ];
     };

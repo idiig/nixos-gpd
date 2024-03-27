@@ -6,7 +6,6 @@
 
     ./nix.nix
 
-    ./x11/xfce-xmonad.nix
     ./tty-login.nix
 
     ./bluetooth.nix
@@ -30,5 +29,6 @@
     # https://github.com/ryan4yin/nix-config/blob/main/modules/nixos/desktop/graphic.nix
     ./graphic.nix
 
+    ./x11/xfce-xmonad.nix
   ];
 }

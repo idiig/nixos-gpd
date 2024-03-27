@@ -1,5 +1,9 @@
 { pkgs, ... }:
 
+let
+  myVars = import ../../myvars/gpd-pocket-3-idiig.nix;
+in 
+
 {
   imports = [
 
@@ -41,7 +45,8 @@
   
     # UI
     ./ui/xfce4.nix
+    # ./ui/xmonad/xmonad.nix
+    ../../machines/${myVars.machine}/xfce4-home/xfce4-default.nix
     ./ui/default-wallpaper.nix
-    ../../machines/gpd-pocket-3/home-default.nix
   ];
 }

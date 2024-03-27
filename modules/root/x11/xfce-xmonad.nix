@@ -29,15 +29,11 @@
       # xtitle
       xwinmosaic
 
+      feh
     ];
   };
 
   programs = {
-    # dconf.enable = true;
-    # gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
@@ -57,14 +53,17 @@
     displayManager = {
       # defaultSession = "xfce";
       defaultSession = "xfce+xmonad";
-      # startx.enable = true;
-      # autoLogin = {
-      #   enable = true;
-      #   user = "idiig";
-      # };
-      sddm.enable = false;
+      startx.enable = true;
+      autoLogin = {
+        enable = true;
+        user = "idiig";
+      };
+      sessionCommands = ''
+        ${pkgs.feh}/bin/feh --bg-fill -no-fehbg $HOME/.local/share/backgrounds/default.jpg > $HOME/feh.log 2>&1
+      '';
       lightdm = {
         enable = true;
+        # greeters.gtk.enable = true; 
         greeters.slick = {
           enable = true;
           theme.name = "Adwaita";
@@ -75,8 +74,6 @@
         #   enable = true;
         #   user = "idiig";
         # };
-        # greeters.gtk.enable = true;
-        # greeters.mini.enable = true;
       };
     };
     windowManager.xmonad = {
@@ -95,11 +92,10 @@
         # noDesktop = true;
         enableXfwm = false;
       };
-      wallpaper = {
-        combineScreens = false;
-        mode = "center";
-      };
+      # wallpaper = {
+      #   combineScreens = false;
+      #   mode = "center";
+      # };
     }; 
   };
 }
-

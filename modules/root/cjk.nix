@@ -2,6 +2,12 @@
 
 {
 
+  environment.systemPackages = with pkgs; [
+    skk-dicts
+    skktools
+    libskk
+  ];
+
   i18n = {
     
     # Language
