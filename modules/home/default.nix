@@ -44,9 +44,11 @@ in
     ./app/terminal/alacritty.nix
   
     # UI
-    ./ui/xfce4.nix
-    # ./ui/xmonad/xmonad.nix
-    ../../machines/${myVars.machine}/xfce4-home/xfce4-default.nix
+    ./ui/gtk.nix
     ./ui/default-wallpaper.nix
+
+    # default dotfiles
+    ./misc/xfce4/default.nix
+    ./misc/fcitx5/default.nix
   ];
 }
