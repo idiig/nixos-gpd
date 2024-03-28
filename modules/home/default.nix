@@ -52,5 +52,6 @@ in
     # default dotfiles
     ./misc/xfce4/default.nix
     ./misc/fcitx5/default.nix
+    ./misc/direnv.nix
   ];
 }
