@@ -1,3 +1,4 @@
+# https://gist.github.com/mattdenner/befcf099f5cfcc06ea04dcdd4969a221
 { config, pkgs, ... }:
 
 let
