@@ -12,8 +12,8 @@
     ./keyboard.nix
     ./sound-audio.nix
     ./networking.nix
-    # https://www.reddit.com/r/NixOS/comments/14qa7d8/control_both_suspend_and_brightness_on_lid_close/
-    ./power-management.nix
+    # # https://www.reddit.com/r/NixOS/comments/14qa7d8/control_both_suspend_and_brightness_on_lid_close/
+    # ./power-management.nix
     ./security.nix
     
     ./datetime.nix
