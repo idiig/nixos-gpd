@@ -8,6 +8,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # home-manager.url = "github:nix-community/home-manager";
+
+    xremap-flake.url = "github:xremap/nix-flake";
+
   };
 
   outputs = { 
@@ -16,6 +19,8 @@
     nixos-hardware, 
     # flake-util, 
     home-manager, 
+
+    xremap-flake,
     ... 
   }@attrs: 
 
@@ -34,6 +39,7 @@
       specialArgs = attrs;
       modules = [
 
+        
         # Automatically generated configuration.nix (Delete boot part)
         ./configuration.nix
 
@@ -44,7 +50,8 @@
         machines/${myVars.machine}/extra-configuration.nix
 
         # General setting
-        ./modules/root/default.nix
+        xremap-flake.nixosModules.default
+        ./modules/root/default.nix 
 
         # User setting
         ./users/idiig/base.nix

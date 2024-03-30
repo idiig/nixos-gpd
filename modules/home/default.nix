@@ -38,7 +38,10 @@ in
     ./app/cloud-service/nutstore/nutstore.nix
     ./app/cloud-service/dropbox.nix
     # (pkgs.callPackage ./gtk-themes/haiku.nix { })
-  
+
+    # # Keybinding
+    # ./app/keybinding/autokey-gtk.nix
+
     # reference-management
     ./app/reference-management/zotero.nix
 
@@ -53,5 +56,6 @@ in
     ./misc/xfce4/default.nix
     ./misc/fcitx5/default.nix
     ./misc/direnv.nix
+
   ];
 }
