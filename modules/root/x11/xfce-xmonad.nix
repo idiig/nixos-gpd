@@ -57,6 +57,7 @@
         user = "idiig";
       };
       sessionCommands = ''
+        # wallpaper
         ${pkgs.feh}/bin/feh --bg-center -no-fehbg $HOME/.local/share/backgrounds/default.jpg & 
       '';
       lightdm = {

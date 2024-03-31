@@ -8,8 +8,10 @@
 
     ./tty-login.nix
 
+    ./x11/xfce-xmonad.nix
+
     ./bluetooth.nix
-    ./remap.nix
+    ./remap/remap.nix
     ./sound-audio.nix
     ./networking.nix
     # # https://www.reddit.com/r/NixOS/comments/14qa7d8/control_both_suspend_and_brightness_on_lid_close/
@@ -31,6 +33,5 @@
     # https://github.com/ryan4yin/nix-config/blob/main/modules/nixos/desktop/graphic.nix
     ./graphic.nix
 
-    ./x11/xfce-xmonad.nix
   ];
 }
