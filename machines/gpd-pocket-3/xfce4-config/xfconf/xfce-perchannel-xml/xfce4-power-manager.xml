@@ -11,7 +11,7 @@
     <property name="dpms-on-battery-sleep" type="uint" value="6"/>
     <property name="brightness-level-on-battery" type="uint" value="3"/>
     <property name="brightness-step-count" type="uint" value="100"/>
-    <property name="power-button-action" type="uint" value="4"/>
+    <property name="power-button-action" type="uint" value="2"/>
     <property name="sleep-button-action" type="uint" value="2"/>
     <property name="hibernate-button-action" type="uint" value="2"/>
     <property name="battery-button-action" type="uint" value="3"/>
