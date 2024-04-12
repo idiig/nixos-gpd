@@ -82,7 +82,7 @@
     </property>
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="show-notifications" type="bool" value="true"/>
+      <property name="show-notifications" type="bool" value="false"/>
       <property name="known-players" type="string" value="firefox"/>
     </property>
     <property name="plugin-9" type="string" value="power-manager-plugin"/>

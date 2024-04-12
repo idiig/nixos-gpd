@@ -33,5 +33,6 @@
     # https://github.com/ryan4yin/nix-config/blob/main/modules/nixos/desktop/graphic.nix
     ./graphic.nix
 
+    ./dropbox.nix
   ];
 }

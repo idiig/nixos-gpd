@@ -36,7 +36,7 @@ in
 
     # cloud-service
     ./app/cloud-service/nutstore/nutstore.nix
-    ./app/cloud-service/dropbox.nix
+    # ./app/cloud-service/dropbox.nix
     # (pkgs.callPackage ./gtk-themes/haiku.nix { })
 
     # # Keybinding
