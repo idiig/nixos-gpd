@@ -14,6 +14,7 @@
     gawk # GNU awk, a pattern scanning and processing language
     jq # A lightweight and flexible command-line JSON processor
     silver-searcher # Ag
+    ripgrep
     fzf # fuzzy search
     ranger
     tmux
@@ -32,6 +33,7 @@
     gnumake
     openssl
 
+    gcc
   ];
 
 }

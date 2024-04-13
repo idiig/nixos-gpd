@@ -6,6 +6,7 @@
     skk-dicts
     skktools
     libskk
+    librime
   ];
 
   i18n = {
