@@ -47,6 +47,7 @@ in
 
     # terminal
     ./app/terminal/alacritty.nix
+    ./app/terminal/tmux.nix
   
     # UI
     ./ui/gtk.nix

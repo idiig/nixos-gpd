@@ -38,7 +38,6 @@
       system = "x86_64-linux";
       specialArgs = attrs;
       modules = [
-
         
         # Automatically generated configuration.nix (Delete boot part)
         ./configuration.nix

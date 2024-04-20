@@ -3,8 +3,9 @@
 {
   # Packages
   home.packages = with pkgs; [
+    ispell
     sqlite  # for org-roam
-    emacs
     cmigemo # for japanese
+    emacs
   ];
 }

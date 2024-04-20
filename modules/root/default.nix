@@ -26,6 +26,7 @@
     ./git.nix
     ./ssh.nix
     ./command-line-tools.nix
+    ./shell.nix
 
     ./system-tools.nix
     # https://github.com/ryan4yin/nix-config/blob/main/modules/nixos/base/zram.nix
