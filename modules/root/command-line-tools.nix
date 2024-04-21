@@ -18,7 +18,8 @@
     fzf # fuzzy search
     ranger
     tmux
-
+    eza
+    
     # misc
     neofetch
     wget
