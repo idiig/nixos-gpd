@@ -114,8 +114,10 @@ in
       {
         plugin = tmux-powerline;
         extraConfig = ''
-          # set-option -g status-left "#(${tmux-powerline}/share/tmux-plugins/tmux-powerline/powerline.sh left)"
-          # set-option -g status-right "#(${tmux-powerline}/share/tmux-plugins/tmux-powerline/powerline.sh right)"
+          # -- toggle_status
+          bind s if-shell '[[ $(tmux show -g status | cut -d\  -f2) == "off" ]]' \
+            'run-shell ${tmux-powerline}/share/tmux-plugins/tmux-powerline/main.tmux' \
+            'set -g status off' 
         '';
       } 
       {

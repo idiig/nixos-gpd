@@ -5,7 +5,7 @@
 
 # General {
 	# Show which segment fails and its exit code.
-	export TMUX_POWERLINE_DEBUG_MODE_ENABLED="true"
+	export TMUX_POWERLINE_DEBUG_MODE_ENABLED="false"
 	# Use patched font symbols.
 	export TMUX_POWERLINE_PATCHED_FONT_IN_USE="true"
 
@@ -38,8 +38,8 @@
 
 	# Uncomment these if you want to enable tmux bindings for muting (hiding) one of the status bars.
 	# E.g. this example binding would mute the left status bar when pressing <prefix> followed by Ctrl-[
-	#export TMUX_POWERLINE_MUTE_LEFT_KEYBINDING="C-["
-	#export TMUX_POWERLINE_MUTE_RIGHT_KEYBINDING="C-]"
+	export TMUX_POWERLINE_MUTE_LEFT_KEYBINDING="C-["
+	export TMUX_POWERLINE_MUTE_RIGHT_KEYBINDING="C-]"
 # }
 
 # air.sh {
