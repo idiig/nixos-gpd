@@ -17,6 +17,7 @@
     ripgrep
     fzf # fuzzy search
     ranger
+    lsof
     tmux
     eza
     
