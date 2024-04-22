@@ -16,6 +16,9 @@
       l = "exa -l";
       la = "exa -la";
       ip = "ip --color=auto";
+      sudo = "sudo -E HOME=$HOME";
+      su = "su --preserve-environment";
+      ranger = "ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd \"$LASTDIR\"";
     };
     
     initExtra = ''
