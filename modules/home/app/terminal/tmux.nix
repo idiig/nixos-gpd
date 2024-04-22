@@ -14,6 +14,18 @@ let
     };
   };
 
+  tmux-mem-cpu-load = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "tmux-mem-cpu-load";
+    version = "unstable-2023-03-12";
+    rtpFilePath = "tmux-mem-cpu-load.plugin.tmux";
+    src = pkgs.fetchFromGitHub {
+      owner = "thewtex";
+      repo = "tmux-mem-cpu-load";
+      rev = "bf0b2721df35ec195798cc493d356e6a70aac8f2";
+      sha256 = "sha256-dM404WQMfU2RHNNwpDm6NvmsDZFCHiF6JCwafNy/uKA=";
+    };
+  };
+
   tmux-nvim = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "tmux.nvim";
     version = "unstable-2023-01-06";
@@ -53,19 +65,25 @@ in
 
   home.packages = with pkgs; [
     tmux
-    # tmux-powerline
+    perl538Packages.Apprainbarf
   ];
   
   programs.tmux = {
     enable = true;
     extraConfig = builtins.readFile ./tmux/tmux.conf; 
+
     plugins = with pkgs; [
-      tmuxPlugins.tmux-thumbs
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.yank
-      tmuxPlugins.vim-tmux-navigator
+      # tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.sensible
       # must be before continuum edits right status bar
+      {
+        plugin = tmuxPlugins.tmux-thumbs;
+        extraConfig = '' 
+          set -g @thumbs-key F
+        '';
+      }
       {
         plugin = tmuxPlugins.catppuccin;
         extraConfig = '' 
@@ -92,6 +110,7 @@ in
       }
 
       tmux-nvim
+      # tmux-mem-cpu-load
       {
         plugin = tmux-powerline;
         extraConfig = ''
@@ -115,4 +134,7 @@ in
 
   home.file.".config/tmux/fzf_panes.tmux".source = ./tmux/fzf_panes.tmux;
   home.file.".config/tmux-powerline/config.sh".source = ./tmux/tmux-powerline/config.sh;
+  home.file.".config/tmux-powerline/themes".source = ./tmux/tmux-powerline/themes;
+  home.file.".config/tmux-powerline/segments".source = ./tmux/tmux-powerline/segments;
+
 }
