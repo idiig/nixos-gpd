@@ -58,5 +58,7 @@ in
     ./misc/fcitx5/default.nix
     ./misc/direnv.nix
 
+    # languages
+    ./lang/python.nix
   ];
 }

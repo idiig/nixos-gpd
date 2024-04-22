@@ -23,22 +23,11 @@
       AGKOZAK_CMD_EXEC_TIME=5
       AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
       AGKOZAK_COLORS_PROMPT_CHAR='magenta'
-      # AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
+      AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
       AGKOZAK_MULTILINE=0
       AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
       autopair-init
     '';
-
-#     ohMyZsh = {
-#       enable = true;
-#       theme = "robbyrussell";
-#       plugins = [
-#         "sudo"
-#         "terraform"
-#         "systemadmin"
-#         "vi-mode"
-#       ];
-#     };
 
     plugins = with pkgs; [
       {

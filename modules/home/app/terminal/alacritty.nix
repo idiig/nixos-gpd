@@ -35,12 +35,12 @@
         program = "zsh";
         args = [
           "-c"
-          "neofetch && $SHELL"
+          "tmux && neofetch && $SHELL"
         ];
       };
 
       colors = {
-        # Default colors
+        
         primary = {
           background = "0x202020";
           foreground = "0xd0d0d0";
@@ -57,7 +57,7 @@
           white = "0xd0d0d0";
         };
 
-	bright = {
+      	bright = {
           black = "0x555753";
           red = "0xef2929";
           green = "0x0d7a0d";
@@ -68,11 +68,6 @@
           white = "0xffffff";
         };
       };
-      
-      # regex = "((ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+)|(([\\w\\.\\-_/]+/)*[\\w\\-_\\.]+\\.[\\w]+(:\\d+)?)";
-      # hyperlinks = true;
-      # command = open-with;  # 执行我上文提到的open-with
-      # post_processing = true;
       
     };
   };
