@@ -49,7 +49,7 @@
       xterm
     ];
     displayManager = {
-      # defaultSession = "xfce";
+      # defaultSession = "none+xmonad";
       defaultSession = "xfce+xmonad";
       startx.enable = true;
       autoLogin = {
@@ -86,9 +86,10 @@
       config = builtins.readFile ./xmonad.hs;
     };
     desktopManager = {
+      xterm.enable = false;
       xfce = {
         enable = true;
-        # noDesktop = true;
+        noDesktop = true;
         enableXfwm = false;
       };
       # wallpaper = {

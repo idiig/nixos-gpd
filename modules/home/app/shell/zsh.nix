@@ -16,8 +16,8 @@
       l = "exa -l";
       la = "exa -la";
       ip = "ip --color=auto";
-      sudo = "sudo -E HOME=$HOME";
-      su = "su --preserve-environment";
+      sudo = "sudo -E HOME=$HOME";  # use user environment to edit root files
+      su = "su --preserve-environment";  # the same
       ranger = "ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd \"$LASTDIR\"";
     };
     

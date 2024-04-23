@@ -7,7 +7,7 @@ _:
     ./boot.nix
 
     # Display and touch rotation
-    ./rotation.nix
+    ./display/rotation.nix
 
     # Suspend and hibernate
     ./suspend-hibernate.nix

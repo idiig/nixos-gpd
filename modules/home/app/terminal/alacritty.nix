@@ -21,7 +21,7 @@
       };
 
       font = {
-        size = 23;
+        size = 26;
         # use_thin_strokes = true;
 
         # normal.family = "FuraCode Nerd Font";
@@ -35,7 +35,8 @@
         program = "zsh";
         args = [
           "-c"
-          "tmux && neofetch && $SHELL"
+          "tmux"
+          "neofetch && $SHELL"
         ];
       };
 
