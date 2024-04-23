@@ -6,9 +6,6 @@ let
 in 
 
 {
-  # # home.activation = '' rm -rf $Home/${myVars.user}/xfce4 '';
-  # home.file.".config/xfce4".source =
-    # ../../../../machines/${myVars.machine}/xfce4-config;
 
   home.file.".config/xfce4/xfconf/xfce-perchannel-xml/displays.xml".source =
     ../../../../machines/${myVars.machine}/display/xfce4/displays.xml;
@@ -21,5 +18,8 @@ in
 
   home.file.".config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml".source =
     ./config/xfce4-panel.xml;
+
+  # home.file.".config/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml".source =
+    # ./config/xfce4-session.xml;
 
 }
