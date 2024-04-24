@@ -3,8 +3,24 @@
 {
   environment = {
     
-    systemPackages = with pkgs; [
-    
+    systemPackages =
+      # # xmonad
+      # (with pkgs.haskellPackages; [
+      #   xmobar-app
+      # ])
+      # ++ (with pkgs; [
+      #   dmenu # Expected by xmonad
+      #   gxmessage # Used by xmonad to show help
+      #   pavucontrol # PulseAudio volume control UI
+      #   brightnessctl # Brightness control CLI
+      #   flameshot # A command-line screen capture utility
+      #   pamixer # PulseAudio volume mixer
+      #   pango # Rendering library used by xmobar
+      # ])
+
+      # # xfce4
+      # ++ (
+      with pkgs; [
       elementary-xfce-icon-theme
       xfce.catfish
       xfce.gigolo
@@ -83,10 +99,10 @@
         haskellPackages.xmonad-extras
         haskellPackages.xmonad
       ];
-      config = builtins.readFile ./xmonad.hs;
+      config = builtins.readFile ./xmonad-dev.hs;
     };
     desktopManager = {
-      xterm.enable = false;
+      xterm.enable = true;
       xfce = {
         enable = true;
         noDesktop = true;

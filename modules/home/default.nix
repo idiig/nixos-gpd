@@ -37,10 +37,6 @@ in
     # cloud-service
     ./app/cloud-service/nutstore/nutstore.nix
     # ./app/cloud-service/dropbox.nix
-    # (pkgs.callPackage ./gtk-themes/haiku.nix { })
-
-    # # Keybinding
-    # ./app/keybinding/autokey-gtk.nix
 
     # reference-management
     ./app/reference-management/zotero.nix
@@ -48,13 +44,16 @@ in
     # terminal
     ./app/terminal/alacritty.nix
     ./app/terminal/tmux.nix
-  
+
+    # # app launcher
+    # ./app/launcher/rofi.nix
+
     # UI
-    ./ui/gtk.nix
+    # ./ui/gtk.nix
     ./ui/default-wallpaper.nix
 
     # default dotfiles
-    ./misc/xfce4/default.nix
+    # ./misc/xfce4/default.nix
     ./misc/fcitx5/default.nix
     ./misc/direnv.nix
 

@@ -8,7 +8,8 @@
 
     ./tty-login.nix
 
-    ./x11/xfce-xmonad.nix
+    # ./x11/xfce-xmonad.nix
+    ./x11/xmonad-xfce.nix
 
     ./bluetooth.nix
     ./remap/remap.nix
