@@ -12,9 +12,9 @@
 
   environment.variables = {
      GDK_SCALE = "1";
-     GDK_DPI_SCALE = "0.8";
+     GDK_DPI_SCALE = "0.5";
      _JAVA_OPTIONS = "-Dsun.java2d.uiScale=1";
-     QT_SCALE_FACTOR = "0.6";
+     QT_SCALE_FACTOR = "0.5";
   };
 
 }

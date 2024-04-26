@@ -36,7 +36,6 @@
         args = [
           "-c"
           "tmux"
-          "neofetch && $SHELL"
         ];
       };
 

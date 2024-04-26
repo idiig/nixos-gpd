@@ -46,14 +46,14 @@
         nixos-hardware.nixosModules.gpd-pocket-3
 
         # Machine related extra config
-        machines/${myVars.machine}/extra-configuration.nix
+        ./machines/${myVars.machine}/extra-configuration.nix
 
         # General setting
         xremap-flake.nixosModules.default
         ./modules/root/default.nix 
 
         # User setting
-        ./users/idiig/base.nix
+        ./users/${myVars.user}/base.nix
         home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

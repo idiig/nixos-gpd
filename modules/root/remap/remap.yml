@@ -11,7 +11,7 @@ modmap:
 keymap:
 - name: Emacs
   application:
-    not: [Emacs, Code, Xfce4-terminal, Thunar, Alacritty]
+    not: [Emacs, Code, Xfce4-terminal, Alacritty]
   remap:
     # Cursor
     C-b: { with_mark: left }

@@ -45,12 +45,13 @@ in
     ./app/terminal/alacritty.nix
     ./app/terminal/tmux.nix
 
-    # # app launcher
-    # ./app/launcher/rofi.nix
+    # app launcher
+    ./app/launcher/rofi.nix
 
     # UI
     # ./ui/gtk.nix
     ./ui/default-wallpaper.nix
+    ./ui/picom.nix
 
     # default dotfiles
     # ./misc/xfce4/default.nix

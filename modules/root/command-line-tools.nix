@@ -37,6 +37,9 @@
 
     gcc
     cmake
+
+    # cmd apps
+    htop
   ];
 
 }

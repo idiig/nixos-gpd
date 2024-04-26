@@ -1,0 +1,53 @@
+-- Xmobar (http://projects.haskell.org/xmobar/)
+-- This is one of the xmobar configurations for DTOS.
+-- This config is packaged in the DTOS repo as 'dtos-xmobar'
+-- Color scheme: Doom One
+-- Dependencies:
+   -- otf-font-awesome
+   -- ttf-mononoki
+   -- ttf-ubuntu-font-family
+   -- htop
+   -- emacs
+   -- pacman (Arch Linux)
+   -- trayer
+   -- 'dtos-local-bin' (from dtos-core-repo)
+
+Config { font            = "CodingFontTobi 20"
+       , additionalFonts = [ "Noto Sans Mono CJK JP 20"
+                           , "Noto Sans Mono CJK HK 16"
+                           , "Font Awesome 6 Free Solid 12"
+                           , "Font Awesome 6 Brands 12"
+                           ]
+       , bgColor      = "#dcdcdc"
+       , fgColor      = "#000000"
+       -- Position TopSize and BottomSize take 3 arguments:
+       --   an alignment parameter (L/R/C) for Left, Right or Center.
+       --   an integer for the percentage width, so 100 would be 100%.
+       --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
+       --   NOTE: The height should be the same as the trayer (system tray) height.
+       , position     = TopSize L 100 40
+       , lowerOnStart = True
+       , hideOnStart  = False
+       , allDesktops  = True
+       , persistent   = True
+       , iconRoot     = ".xmonad/xpm/"  -- default: "."
+       , commands = [
+                        -- View notify.log file (~/.log/notify-log/notify.log)
+                      Run Com "echo" ["<fn=2>訊</fn> View"] "notify-log" 3600
+                        -- Cpu usage in percent
+                    , Run Cpu ["-t", "<fn=2>芯</fn> <total>%","-H","50","--high","red"] 20
+                        -- Ram used number and percent
+                    , Run Memory ["-t", "<fn=2>憶</fn> <usedratio>%"] 20
+                        -- Battey
+                    , Run BatteryP ["BAT0"] ["-t", "<fn=2>電</fn> <acstatus> (<left>%)", "-L", "15", "--low", "red"] 360
+                        -- Time and date
+                    , Run Date "<fn=2>時</fn> %H:%M (%d)" "date" 50
+                        -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
+                    , Run Com "etc/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
+                        -- Prints out the left side items such as workspaces, layout, etc.
+                    , Run UnsafeStdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %UnsafeStdinReader% }{ <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e nvim .log/notify.log`>%notify-log%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%cpu%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%memory%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000>%battery%</fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(dt/year-calendar))'`>%date%</action></fc></box> %trayerpad%"
+       }
