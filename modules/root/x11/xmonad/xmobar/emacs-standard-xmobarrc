@@ -13,7 +13,7 @@
    -- 'dtos-local-bin' (from dtos-core-repo)
 
 Config { font            = "CodingFontTobi 20"
-       , additionalFonts = [ "Noto Sans Mono CJK JP 20"
+       , additionalFonts = [ "Noto Sans Mono CJK JP 11"
                            , "Noto Sans Mono CJK HK 16"
                            , "Font Awesome 6 Free Solid 12"
                            , "Font Awesome 6 Brands 12"
@@ -23,14 +23,14 @@ Config { font            = "CodingFontTobi 20"
        -- Position TopSize and BottomSize take 3 arguments:
        --   an alignment parameter (L/R/C) for Left, Right or Center.
        --   an integer for the percentage width, so 100 would be 100%.
-       --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
+       --   an integer for the minimum pixel height for xmobar, so 45 would force a height of at least 24 pixels.
        --   NOTE: The height should be the same as the trayer (system tray) height.
-       , position     = TopSize L 100 40
+       , position     = TopSize L 100 45
        , lowerOnStart = True
        , hideOnStart  = False
        , allDesktops  = True
        , persistent   = True
-       , iconRoot     = ".xmonad/xpm/"  -- default: "."
+       , iconRoot     = "/etc/xmobar/xpm/"
        , commands = [
                         -- View notify.log file (~/.log/notify-log/notify.log)
                       Run Com "echo" ["<fn=2>訊</fn> View"] "notify-log" 3600

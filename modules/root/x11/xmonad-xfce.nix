@@ -12,6 +12,8 @@ in
 {
   environment = {
     systemPackages = with pkgs; [
+      # lxsession
+      # lxappearance
       xmobar
       # xfce.xfce4-pulseaudio-plugin
       dmenu # Expected by xmonad
@@ -24,7 +26,9 @@ in
       pango # Rendering library used by xmobar
       trayer # show system icon
     ];
-    etc."xmobar".source = ./xmonad/xmobar; # xmobar theme
+    etc = {
+      "xmobar".source = ./xmonad/xmobar; # xmobar theme
+    };
   };
 
   programs = {

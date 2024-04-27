@@ -7,7 +7,7 @@ colorScheme = "emacs-standard"
 colorBack = "#dcdcdc"
 colorFore = "#000000"
 
-color01 = "#1c1f24"
+color01 = "#ffffff"  -- main white
 color02 = "#b3303a"  -- urgent xmobar red
 color03 = "#98be65"
 color04 = "#da8548"
@@ -25,4 +25,4 @@ color15 = "#d9d9d9"  -- active
 color16 = "#000000"  -- black
 
 colorTrayer :: String
-colorTrayer = "--tint 0xbababa"
+colorTrayer = "--tint 0xdcdcdc"

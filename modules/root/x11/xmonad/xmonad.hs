@@ -35,7 +35,6 @@ import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.WindowSwallowing
 import XMonad.Hooks.WorkspaceHistory
-import XMonad.Hooks.EwmhDesktops ( ewmhDesktopsStartup)
 
 -- Layouts
 import XMonad.Layout.Accordion
@@ -121,6 +120,7 @@ myStartupHook = do
   spawnOnce "volumeicon"
   -- spawnOnce "notify-log $HOME/.log/notify.log"
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
+  spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 45")
   spawn "fcitx5 &"
 
   -- Select only =ONE= of the following four ways to set the wallpaper.
@@ -438,24 +438,28 @@ myKeys c =
   --, ("M-S-q", addName "Quit XMonad"            $ sequence_ [spawn (mySoundPlayer ++ shutdownSound), io exitSuccess])
   , ("M-S-c", addName "Kill focused window"    $ kill1)
   , ("M-S-a", addName "Kill all windows on WS" $ killAll)
-  , ("M-b", addName "Toggle bar show/hide"     $ sendMessage ToggleStruts)
-  , ("M-p", addName "Rofi launcher"            $ spawn "rofi -modi drun,ssh,window -show drun -show-icons")
-  , ("M-S-p", addName "Rofi prompt"            $ spawn "rofi -show run")
+  , ("M-S-b", addName "Toggle bar show/hide"   $ sendMessage ToggleStruts)
+  , ("M-o", addName "Rofi launcher"            $ spawn "rofi -modi drun,ssh,window -show drun -show-icons")
+  , ("M-S-o", addName "Rofi prompt"            $ spawn "rofi -show run")
   ]
 
   ^++^ subKeys "Switch to workspace"
-  [ ("M-1", addName "Switch to workspace 1"    $ (windows $ W.greedyView $ myWorkspaces  !! 0))
-  , ("M-2", addName "Switch to workspace 2"    $ (windows $ W.greedyView $ myWorkspaces  !! 1))
-  , ("M-3", addName "Switch to workspace 3"    $ (windows $ W.greedyView $ myWorkspaces  !! 2))
-  , ("M-4", addName "Switch to workspace 4"    $ (windows $ W.greedyView $ myWorkspaces  !! 3))
-  , ("M-5", addName "Switch to workspace 5"    $ (windows $ W.greedyView $ myWorkspaces  !! 4))
-  , ("M-6", addName "Switch to workspace 6"    $ (windows $ W.greedyView $ myWorkspaces  !! 5))
-  , ("M-7", addName "Switch to workspace 7"    $ (windows $ W.greedyView $ myWorkspaces  !! 6))
-  , ("M-8", addName "Switch to workspace 8"    $ (windows $ W.greedyView $ myWorkspaces  !! 7))
-  , ("M-9", addName "Switch to workspace 9"    $ (windows $ W.greedyView $ myWorkspaces  !! 8))]
+  [ ("M-n", addName "Switch to next WS"        $ moveTo Next nonNSP)
+  , ("M-p", addName "Switch to prev WS"        $ moveTo Prev nonNSP)
+  , ("M-1", addName "Switch to workspace 1"    $ (windows $ W.greedyView $ myWorkspaces !! 0))
+  , ("M-2", addName "Switch to workspace 2"    $ (windows $ W.greedyView $ myWorkspaces !! 1))
+  , ("M-3", addName "Switch to workspace 3"    $ (windows $ W.greedyView $ myWorkspaces !! 2))
+  , ("M-4", addName "Switch to workspace 4"    $ (windows $ W.greedyView $ myWorkspaces !! 3))
+  , ("M-5", addName "Switch to workspace 5"    $ (windows $ W.greedyView $ myWorkspaces !! 4))
+  , ("M-6", addName "Switch to workspace 6"    $ (windows $ W.greedyView $ myWorkspaces !! 5))
+  , ("M-7", addName "Switch to workspace 7"    $ (windows $ W.greedyView $ myWorkspaces !! 6))
+  , ("M-8", addName "Switch to workspace 8"    $ (windows $ W.greedyView $ myWorkspaces !! 7))
+  , ("M-9", addName "Switch to workspace 9"    $ (windows $ W.greedyView $ myWorkspaces !! 8))]
 
   ^++^ subKeys "Send window to workspace"
-  [ ("M-S-1", addName "Send to workspace 1"    $ (windows $ W.shift $ myWorkspaces !! 0))
+  [ ("M-S-n", addName "Send to next WS"        $ shiftTo Next nonNSP)
+  , ("M-S-p", addName "Send to prev WS"        $ shiftTo Prev nonNSP)
+  , ("M-S-1", addName "Send to workspace 1"    $ (windows $ W.shift $ myWorkspaces !! 0))
   , ("M-S-2", addName "Send to workspace 2"    $ (windows $ W.shift $ myWorkspaces !! 1))
   , ("M-S-3", addName "Send to workspace 3"    $ (windows $ W.shift $ myWorkspaces !! 2))
   , ("M-S-4", addName "Send to workspace 4"    $ (windows $ W.shift $ myWorkspaces !! 3))
@@ -466,8 +470,8 @@ myKeys c =
   , ("M-S-9", addName "Send to workspace 9"    $ (windows $ W.shift $ myWorkspaces !! 8))]
 
   ^++^ subKeys "Move window to WS and go there"
-  [ ("M-M1-n", addName "Move window to next WS"   $ shiftTo Next nonNSP >> moveTo Next nonNSP)
-  , ("M-M1-p", addName "Move window to prev WS" $ shiftTo Prev nonNSP >> moveTo Prev nonNSP)
+  [ ("M-M1-n", addName "Move window to next WS"           $ shiftTo Next nonNSP >> moveTo Next nonNSP)
+  , ("M-M1-p", addName "Move window to prev WS"           $ shiftTo Prev nonNSP >> moveTo Prev nonNSP)
   , ("M-M1-1", addName "Send to workspace 1 and go there" $ (windows $ W.shift $ myWorkspaces !! 0) >> (windows $ W.greedyView $ myWorkspaces !! 0))
   , ("M-M1-2", addName "Send to workspace 2 and go there" $ (windows $ W.shift $ myWorkspaces !! 1) >> (windows $ W.greedyView $ myWorkspaces !! 1))
   , ("M-M1-3", addName "Send to workspace 3 and go there" $ (windows $ W.shift $ myWorkspaces !! 2) >> (windows $ W.greedyView $ myWorkspaces !! 2))
@@ -514,7 +518,7 @@ myKeys c =
   ^++^ subKeys "Favorite programs"
   [ ("M-<Return>", addName "Launch terminal"   $ spawn (myTerminal))
   , ("M-b", addName "Launch web browser"       $ spawn (myBrowser))
-  , ("M-M1-h", addName "Launch htop"           $ spawn (myTerminal ++ " -e htop"))]
+  , ("M-c", addName "Launch htop"              $ spawn (myTerminal ++ " -e htop"))]
 
   ^++^ subKeys "Monitors"
   [ ("M-.", addName "Switch focus to next monitor" $ nextScreen)
@@ -527,10 +531,10 @@ myKeys c =
 
   -- Window resizing
   ^++^ subKeys "Window resizing"
-  [ ("M-h", addName "Shrink window"               $ sendMessage Shrink)
-  , ("M-l", addName "Expand window"               $ sendMessage Expand)
-  , ("M-M1-j", addName "Shrink window vertically" $ sendMessage MirrorShrink)
-  , ("M-M1-k", addName "Expand window vertically" $ sendMessage MirrorExpand)]
+  [ ("M-h", addName "Shrink window"              $ sendMessage Shrink)
+  , ("M-l", addName "Expand window"              $ sendMessage Expand)
+  , ("M-S-,", addName "Shrink window vertically" $ sendMessage MirrorShrink)
+  , ("M-S-.", addName "Expand window vertically" $ sendMessage MirrorExpand)]
 
   -- Floating windows
   ^++^ subKeys "Floating windows"
@@ -540,10 +544,10 @@ myKeys c =
 
   -- Increase/decrease spacing (gaps)
   ^++^ subKeys "Window spacing (gaps)"
-  [ ("C-M1-j", addName "Decrease window spacing" $ decWindowSpacing 4)
-  , ("C-M1-k", addName "Increase window spacing" $ incWindowSpacing 4)
-  , ("C-M1-h", addName "Decrease screen spacing" $ decScreenSpacing 4)
-  , ("C-M1-l", addName "Increase screen spacing" $ incScreenSpacing 4)]
+  [ ("M-M1-j", addName "Decrease window spacing" $ decWindowSpacing 4)
+  , ("M-M1-k", addName "Increase window spacing" $ incWindowSpacing 4)
+  , ("M-M1-h", addName "Decrease screen spacing" $ decScreenSpacing 4)
+  , ("M-M1-l", addName "Increase screen spacing" $ incScreenSpacing 4)]
 
   -- Increase/decrease windows in the master pane or the stack
   ^++^ subKeys "Increase/decrease windows in master pane or the stack"
@@ -617,13 +621,13 @@ main = do
   xmproc0 <- spawnPipe ("xmobar -x 0 /etc/xmobar/" ++ colorScheme ++ "-xmobarrc")
   xmproc1 <- spawnPipe ("xmobar -x 1 /ect/xmobar/" ++ colorScheme ++ "-xmobarrc")
   xmproc2 <- spawnPipe ("xmobar -x 2 /etc/xmobar/" ++ colorScheme ++ "-xmobarrc")
-  -- the xmonad, ya know...what the WM is named after!
+  -- the xmonad
   xmonad $ addDescrKeys' ((mod4Mask, xK_F1), showKeybindings) myKeys $ ewmh $ docks $ def
     { manageHook         = myManageHook <+> manageDocks
     , handleEventHook    = windowedFullscreenFixEventHook <> swallowEventHook (className =? "Alacritty"  <||> className =? "st-256color" <||> className =? "XTerm") (return True) <> trayerPaddingXmobarEventHook
     , modMask            = myModMask
     , terminal           = myTerminal
-    , startupHook        = myStartupHook >> ewmhDesktopsStartup
+    , startupHook        = myStartupHook
     , layoutHook         = showWName' myShowWNameTheme $ myLayoutHook
     , workspaces         = myWorkspaces
     , borderWidth        = myBorderWidth
@@ -631,8 +635,11 @@ main = do
     , focusedBorderColor = myFocusColor
     , logHook = dynamicLogWithPP $  filterOutWsPP [scratchpadWorkspaceTag]  $ xmobarPP
         { ppOutput = \x -> hPutStrLn xmproc0 x   -- xmobar on monitor 1
-                        >> hPutStrLn xmproc1 x   -- xmobar on monitor 2
-                        >> hPutStrLn xmproc2 x   -- xmobar on monitor 3
+                        -- -- FIXME: add additional xmproc cause ShowWName not to fade
+                        -- >> hPutStrLn xmproc1 x   -- xmobar on monitor 2
+                        -- >> hPutStrLn xmproc2 x   -- xmobar on monitor 3
+        -- , ppCurrent = xmobarColor colorFore "" . wrap
+        --               ("<box type=Full width=1 mb=1 color=" ++ colorFore ++ " bgColor=" ++ color01 ++ "> ") (" </box>")
         , ppCurrent = xmobarColor color06 "" . wrap
                       ("<fc=" ++ color06 ++ ">[</fc><box type=Bottom width=2 mb=2 color=" ++ color06 ++ ">") ("</box><fc=" ++ color06 ++ ">]</fc>")
           -- Visible but not current workspace
@@ -643,14 +650,15 @@ main = do
           -- Hidden workspaces (no windows)
         , ppHiddenNoWindows = xmobarColor color05 "" . clickable
           -- Title of active window
-        , ppTitle = xmobarColor color16 "" . shorten 40
+        , ppTitle = xmobarColor color16 "" . wrap
+                    "<fn=1>" "</fn>" . shorten 25
           -- Separator character
-        , ppSep =  "<fc=" ++ color09 ++ "> <fn=2>|</fn> </fc>"
+        , ppSep =  "<fc=" ++ color09 ++ "> | </fc>"
           -- Urgent workspace
         , ppUrgent = xmobarColor color02 "" . wrap "!" "!"
           -- Adding # of windows on current workspace to the bar
         , ppExtras  = [windowCount]
           -- order of things in xmobar
-        , ppOrder  = \(ws:l:t:ex) -> [ws]++[l]++ex++[t]
+        , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
         }
     }
