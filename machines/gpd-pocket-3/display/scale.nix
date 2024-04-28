@@ -21,7 +21,7 @@
      # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
      # QT_ENABLE_HIGHDPI_SCALING = "1";
      # QT_SCREEN_SCALE_FACTORS = "0.5";
-     QT_SCALE_FACTOR = "1";
+     QT_SCALE_FACTOR = "0.8";
      # QT_FONT_DPI = "96";
   };
 

@@ -1,4 +1,4 @@
-# XMonad with xfce4 feature
+# XMonad with lxde4 feature
 
 { pkgs, ... }:
 
@@ -26,33 +26,6 @@ in
       pango # Rendering library used by xmobar
       trayer # show system icon
     ];
-    xfce.excludePackages = with pkgs.xfce; [
-      # xfce4-screensaver-configure
-      # xfce4-accessibility-settings
-      # xfce4-screensaver-preferences
-      # xfce4-appearance-settings
-      # xfce4-screenshooter
-      xfce4-appfinder
-      # xfce4-session
-      # xfce4-display-settings
-      # xfce4-session-logout
-      # xfce4-session-settings
-      # xfce4-keyboard-settings
-      # xfce4-settings-editor
-      xfce4-taskmanager
-      # xfce4-mouse-settings
-      xfce4-terminal
-      # xfce4-notifyd-config
-      # xfconf-query
-      # xfce4-pm-helper
-      # xflock4  # lock screen
-      # xfce4-power-manager
-      # xfpm-power-backlight-helper
-      # xfce4-power-manager-settings
-      # xfce4-screensaver
-      # xfsettingsd
-      # xfce4-screensaver-command
-    ];
     etc = {
       "xmobar".source = ./xmonad/xmobar; # xmobar theme
       "trayer/trayer-padding-icon.sh" = {
@@ -62,16 +35,7 @@ in
     };
   };
 
-  programs = {
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-media-tags-plugin
-        thunar-volman
-      ];
-    };
-  };
+  programs.slock.enable = true;    # screenlocker
 
   # Display/desktop/windows manager
   services.xserver = {
@@ -108,15 +72,7 @@ in
         "-odir /tmp" # place object files in /tmp, otherwise ghc tries to write them to the nix store
         "-i ${xmonad-color-themes}" # tell ghc to search in the respective nix store path for the module
       ];
-      config = builtins.readFile ./xmonad/xmonad-xfce.hs;
-    };
-    desktopManager = {
-      xterm.enable = false;
-      xfce = {
-        enable = true;
-        noDesktop = true;
-        enableXfwm = false;
-      };
+      config = builtins.readFile ./xmonad/xmonad-lx.hs;
     };
   };
 }

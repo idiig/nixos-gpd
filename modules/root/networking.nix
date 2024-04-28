@@ -1,4 +1,11 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, nixpkgs-unstable, system, ... }:
+
+let
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+in
 
 {
   environment.systemPackages = with pkgs; [
@@ -11,7 +18,6 @@
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
     ipcalc # it is a calculator for the IPv4/v6 addresses
-
 
   ];
 
@@ -26,8 +32,9 @@
   # it's more convenient than using the IP address.
   # https://avahi.org/
   services.avahi = {
+    package = pkgs-unstable.avahi;
     enable = true;
-    nssmdns4 = true;
+    # nssmdns4 = true;
     publish = {
       enable = true;
       domain = true;

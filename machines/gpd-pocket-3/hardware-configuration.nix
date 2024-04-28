@@ -1,7 +1,10 @@
-_:
+{ nixos-hardware, ... }:
 
 {
   imports = [
+
+    # Hardware auto
+    nixos-hardware.nixosModules.gpd-pocket-3
 
     # Boot config
     ./boot.nix

@@ -2,30 +2,35 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    # flake-util.url = "github:numtide/flake-utils";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # home-manager.url = "github:nix-community/home-manager";
 
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+
+    # Extra
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    flake-util.url = "github:numtide/flake-utils";
     xremap-flake.url = "github:xremap/nix-flake";
 
   };
 
   outputs = { 
     self, 
-    nixpkgs, 
-    nixos-hardware, 
-    # flake-util, 
-    home-manager, 
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
 
+    nixos-hardware,
+    flake-util,
     xremap-flake,
     ... 
-  }@attrs: 
+  }@inputs:
 
   let
     myVars = import ./myvars/gpd-pocket-3-idiig.nix;
+    system = "x86_64-linux";
+    specialArgs = inputs // { inherit system; };
   in 
 
   {
@@ -35,31 +40,22 @@
     packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
     
     nixosConfigurations.gpd-pocket-3 = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = attrs;
+      system = system;
+      specialArgs = specialArgs;
       modules = [
         
         # Automatically generated configuration.nix (Delete boot part)
         ./configuration.nix
 
-        # Hardware auto
-        nixos-hardware.nixosModules.gpd-pocket-3
-
         # Machine related extra config
-        ./machines/${myVars.machine}/extra-configuration.nix
+        ./machines/${myVars.machine}/hardware-configuration.nix
 
         # General setting
-        xremap-flake.nixosModules.default
-        ./modules/root/default.nix 
+        ./modules/root/default.nix
 
         # User setting
-        ./users/${myVars.user}/base.nix
-        home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${myVars.user} = import ./users/${myVars.user}/home.nix;
-          }
+        ./users/${myVars.user}/default.nix
+
       ];
     };
   };

@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, xremap-flake, ... }:
 
 {
+  imports = [ xremap-flake.nixosModules.default ];
+
   # Keyboard
   console.useXkbConfig = true;
 
