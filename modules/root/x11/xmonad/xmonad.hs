@@ -120,7 +120,7 @@ myStartupHook = do
   spawnOnce "volumeicon"
   -- spawnOnce "notify-log $HOME/.log/notify.log"
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
-  spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 45")
+  spawn ("sleep 2 && trayer --iconspacing 6 --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 28")
   spawn "fcitx5 &"
 
   -- Select only =ONE= of the following four ways to set the wallpaper.
@@ -619,7 +619,7 @@ main :: IO ()
 main = do
   -- Launching three instances of xmobar on their monitors.
   xmproc0 <- spawnPipe ("xmobar -x 0 /etc/xmobar/" ++ colorScheme ++ "-xmobarrc")
-  xmproc1 <- spawnPipe ("xmobar -x 1 /ect/xmobar/" ++ colorScheme ++ "-xmobarrc")
+  xmproc1 <- spawnPipe ("xmobar -x 1 /etc/xmobar/" ++ colorScheme ++ "-xmobarrc")
   xmproc2 <- spawnPipe ("xmobar -x 2 /etc/xmobar/" ++ colorScheme ++ "-xmobarrc")
   -- the xmonad
   xmonad $ addDescrKeys' ((mod4Mask, xK_F1), showKeybindings) myKeys $ ewmh $ docks $ def
@@ -635,9 +635,8 @@ main = do
     , focusedBorderColor = myFocusColor
     , logHook = dynamicLogWithPP $  filterOutWsPP [scratchpadWorkspaceTag]  $ xmobarPP
         { ppOutput = \x -> hPutStrLn xmproc0 x   -- xmobar on monitor 1
-                        -- -- FIXME: add additional xmproc cause ShowWName not to fade
-                        -- >> hPutStrLn xmproc1 x   -- xmobar on monitor 2
-                        -- >> hPutStrLn xmproc2 x   -- xmobar on monitor 3
+                        >> hPutStrLn xmproc1 x   -- xmobar on monitor 2
+                        >> hPutStrLn xmproc2 x   -- xmobar on monitor 3
         -- , ppCurrent = xmobarColor colorFore "" . wrap
         --               ("<box type=Full width=1 mb=1 color=" ++ colorFore ++ " bgColor=" ++ color01 ++ "> ") (" </box>")
         , ppCurrent = xmobarColor color06 "" . wrap

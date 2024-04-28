@@ -28,6 +28,10 @@ in
     ];
     etc = {
       "xmobar".source = ./xmonad/xmobar; # xmobar theme
+      "trayer/trayer-padding-icon.sh" = {
+        source = ./xmonad/trayer-padding-icon.sh;
+        mode = "0755";  # make excutable
+      };
     };
   };
 

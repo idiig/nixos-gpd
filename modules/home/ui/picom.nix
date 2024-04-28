@@ -18,12 +18,13 @@
       rounded-corners-exclude = "class_g != 'eww-acpi_info'";
     };
     shadow = true;
-    shadowOpacity = 0.9;
+    shadowOpacity = 0.1;
     # https://www.reddit.com/r/suckless/comments/g689o8/removing_comptonpicom_shadow_from_status_bar/
     shadowExclude = [
       "_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
       "class_g = 'eww-ewwbar'"
       "class_g = 'xmonad-decoration'"
+      "class_g = 'trayer'"
     ];
   };
 }
