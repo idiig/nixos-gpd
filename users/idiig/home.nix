@@ -7,11 +7,14 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # extra app
   imports = [
+
     ../../modules/home/default.nix
+
+    # extra app
     ../../modules/home/app/meeting/zoom.nix
     ../../modules/home/app/editor/vscode.nix
+
   ];
 
   # Home Manager can also manage your environment variables through

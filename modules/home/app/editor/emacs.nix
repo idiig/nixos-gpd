@@ -6,6 +6,6 @@
     ispell
     sqlite  # for org-roam
     cmigemo # for japanese
-    emacs29
+    emacs
   ];
 }

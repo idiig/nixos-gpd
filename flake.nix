@@ -1,14 +1,15 @@
 {
-  description = "A very basic flake";
+  description = "";
 
   inputs = {
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    # pkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
 
     # Extra
+    home-manager.url = "github:nix-community/home-manager";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     flake-util.url = "github:numtide/flake-utils";
     xremap-flake.url = "github:xremap/nix-flake";
@@ -19,11 +20,11 @@
     self, 
     nixpkgs,
     nixpkgs-unstable,
-    home-manager,
 
-    nixos-hardware,
     flake-util,
-    xremap-flake,
+    home-manager,    # for users/<usr>/default.nix
+    nixos-hardware,  # for machines/<machine>/hardware-configuration.nix
+    xremap-flake,    # for remap; modules/root/remap/remap.nix
     ... 
   }@inputs:
 
@@ -35,13 +36,15 @@
 
   {
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    # packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-    
-    nixosConfigurations.gpd-pocket-3 = nixpkgs.lib.nixosSystem {
+    # packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+
+    nixosConfigurations.gpd-pocket-3 = nixpkgs-unstable.lib.nixosSystem {
+
       system = system;
       specialArgs = specialArgs;
+
       modules = [
         
         # Automatically generated configuration.nix (Delete boot part)

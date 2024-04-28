@@ -11,7 +11,7 @@
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users.idiig = import ./extra-app.nix;
+      home-manager.users.idiig = import ./home.nix;
     }
 
   ];

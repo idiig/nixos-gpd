@@ -1,11 +1,4 @@
-{ config, pkgs, lib, nixpkgs-unstable, system, ... }:
-
-let
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-in
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -32,9 +25,8 @@ in
   # it's more convenient than using the IP address.
   # https://avahi.org/
   services.avahi = {
-    package = pkgs-unstable.avahi;
     enable = true;
-    # nssmdns4 = true;
+    nssmdns4 = true;
     publish = {
       enable = true;
       domain = true;
