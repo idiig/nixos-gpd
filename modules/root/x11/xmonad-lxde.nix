@@ -1,4 +1,4 @@
-# XMonad with lxde4 feature
+# XMonad with lxde feature
 
 { pkgs, ... }:
 
@@ -14,40 +14,99 @@ in
 {
   environment = {
     systemPackages = with pkgs; [
+      lxde.lxsession
+      lxappearance
+      pcmanfm
+
       xmobar
-      # xfce.xfce4-pulseaudio-plugin
       dmenu # Expected by xmonad
       gxmessage # Used by xmonad to show help
+
       xorg.xkill # Kill X windows with the cursor
+      librsvg
+      gdk-pixbuf
+      gnome.adwaita-icon-theme
+      # xscreensaver
+
+      networkmanagerapplet # network control UI
+      arandr # display manager
+      # libnotify # for notify-send
+      # pulseaudio # To use pactl
+      # Helvum # pipewire UI
+      qpwgraph  # pipewire UI
       pavucontrol # PulseAudio volume control UI
       brightnessctl # Brightness control CLI
-      flameshot # A command-line screen capture utility
       pamixer # PulseAudio volume mixer
       pango # Rendering library used by xmobar
       trayer # show system icon
+      yad # xmonad hint key
     ];
     etc = {
       "xmobar".source = ./xmonad/xmobar; # xmobar theme
-      "trayer/trayer-padding-icon.sh" = {
-        source = ./xmonad/trayer-padding-icon.sh;
+      "dtos-backgrounds".source = ./dtos-backgrounds; # xmobar theme
+      "scripts/trayer-padding-icon.sh" = {
+        source = ./scripts/trayer-padding-icon.sh;
+        mode = "0755";  # make excutable
+      };
+      "scripts/notify-log" = {
+        source = ./scripts/notify-log;
+        mode = "0755";  # make excutable
+      };
+      "scripts/brightness-notify.sh" = {
+        source = ./scripts/brightness-notify.sh;
+        mode = "0755";  # make excutable
+      };
+      "scripts/volume-notify.sh" = {
+        source = ./scripts/volume-notify.sh;
         mode = "0755";  # make excutable
       };
     };
   };
 
-  programs.slock.enable = true;    # screenlocker
-
   # Display/desktop/windows manager
+  services.displayManager = {
+    defaultSession = "none+xmonad";
+    autoLogin = {
+      enable = true;
+      user = "idiig";
+    };
+  };
+
+  # screenlocker
+  services.physlock = {
+
+    enable = true;
+    lockMessage = ";>";
+
+    # Whether to disable SysRq when locked with physlock.
+    disableSysRq = true;
+
+    # muteKernelMessages = false;
+    muteKernelMessages = true;
+
+    lockOn.suspend = true;
+    lockOn.hibernate = true;
+
+    allowAnyUser = true;
+
+  };
+
+  # services.xscreensaver = {
+  #   enable = true;
+  #   package = pkgs.xscreensaver;
+  # };
+
+  # Or
+
+  # programs.slock = {
+  #   enable = true;
+  #   package = pkgs.slock;
+  # };
+
   services.xserver = {
     enable = true;
     displayManager = {
-      # defaultSession = "none+xmonad";
-      defaultSession = "xfce+xmonad";
       startx.enable = true;
-      autoLogin = {
-        enable = true;
-        user = "idiig";
-      };
       lightdm = {
         enable = true;
         # greeters.gtk.enable = true;
@@ -72,7 +131,7 @@ in
         "-odir /tmp" # place object files in /tmp, otherwise ghc tries to write them to the nix store
         "-i ${xmonad-color-themes}" # tell ghc to search in the respective nix store path for the module
       ];
-      config = builtins.readFile ./xmonad/xmonad-lx.hs;
+      config = builtins.readFile ./xmonad/xmonad-lxde.hs;
     };
   };
 }

@@ -12,6 +12,9 @@
     ../../modules/home/default.nix
 
     # extra app
+    ../../modules/home/app/multimedia/spotify.nix
+    ../../modules/home/app/multimedia/obs-studio.nix
+    ../../modules/home/app/browser/firefox.nix
     ../../modules/home/app/meeting/zoom.nix
     ../../modules/home/app/editor/vscode.nix
 

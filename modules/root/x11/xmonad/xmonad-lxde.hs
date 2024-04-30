@@ -114,20 +114,23 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
   -- spawnOnce (mySoundPlayer ++ startupSound)
-  -- spawnOnce "lxsession"
+  spawnOnce "lxsession"
+  spawnOnce "lxappeareance"
+  -- spawnOnce "xscreensaver -no-splash"
   spawn "killall conky"   -- kill current conky on each restart
+  spawn "killall trayer"   -- kill current trayer on each restart
   spawnOnce "picom"
   spawnOnce "nm-applet"
-  spawnOnce "volumeicon"
+  -- spawnOnce "volumeicon"
   spawnOnce "/etc/scripts/notify-log $HOME/.log/notify.log"
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
-  spawn "fcitx5 &"
-  spawn ("sleep 2 && trayer --iconspacing 6 --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 28")
+  -- spawn "fcitx5 &"
+  spawn ("sleep 2 && trayer --iconspacing 6 --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 40")
 
   -- Select only =ONE= of the following four ways to set the wallpaper.
   -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
-  spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-  -- spawnOnce "feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*"  -- feh set random wallpaper
+  -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
+  spawnOnce "feh --randomize --bg-center /etc/dtos-backgrounds/*"  -- feh set random wallpaper
   -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
   setWMName "LG3D"
 
@@ -243,8 +246,8 @@ gsOffice =
 
 gsSettings =
   [ ("ARandR", "arandr")
-  -- , ("Customize Look and Feel", "lxappearance")
-  , ("Customize Look and Feel", "xfce4-appearance")
+  , ("Customize Look and Feel", "lxappearance")
+  -- , ("Customize Look and Feel", "xfce4-appearance")
   ]
 
 gsSystem =
@@ -450,7 +453,8 @@ myKeys c =
   let subKeys str ks = subtitle' str : mkNamedKeymap c ks in
   subKeys "Xmonad Essentials"
   [ ("M-S-r", addName "Restart XMonad"         $ spawn "xmonad --restart")
-  --, ("M-S-q", addName "Quit XMonad"            $ sequence_ [spawn (mySoundPlayer ++ shutdownSound), io exitSuccess])
+  , ("M-q", addName "Logout menu"              $ spawn "lxsession-logout")
+  , ("M-S-q", addName "Quit XMonad"            $ sequence_ [spawn (mySoundPlayer ++ shutdownSound), io exitSuccess])
   , ("M-S-c", addName "Kill focused window"    $ kill1)
   , ("M-S-a", addName "Kill all windows on WS" $ killAll)
   , ("M-S-b", addName "Toggle bar show/hide"   $ sendMessage ToggleStruts)

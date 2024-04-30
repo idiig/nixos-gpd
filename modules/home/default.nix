@@ -7,9 +7,6 @@ in
 {
   imports = [
 
-    # better-default
-    # ./app/better-default/..
-
     # editors
     ./app/editor/emacs.nix
     ./app/editor/vim.nix
@@ -22,11 +19,15 @@ in
     ./app/version-management/git.nix
 
     # browser
-    ./app/browser/firefox.nix
+    ./app/browser/qutebrowser.nix
+    # ./app/browser/firefox.nix
 
     # image-processor
     ./app/image-processor/evince.nix
-    ./app/image-processor/inkscape.nix 
+    ./app/image-processor/inkscape.nix
+
+    # multimedia
+    ./app/multimedia/mocp.nix
     
     # shell
     ./app/shell/zsh.nix
@@ -35,8 +36,7 @@ in
     ./app/word-processor/libreoffice.nix
 
     # cloud-service
-    ./app/cloud-service/nutstore/nutstore.nix
-    # ./app/cloud-service/dropbox.nix
+    ./app/cloud-service/nextcloud.nix
 
     # reference-management
     ./app/reference-management/zotero.nix
@@ -48,10 +48,13 @@ in
     # app launcher
     ./app/launcher/rofi.nix
 
+    # appearance related
+    ./app/appearance/picom.nix
+    ./app/appearance/dunst.nix
+
     # UI
     # ./ui/gtk.nix
-    ./ui/default-wallpaper.nix
-    ./ui/picom.nix
+    # ./ui/default-wallpaper.nix
 
     # default dotfiles
     # ./misc/xfce4/default.nix

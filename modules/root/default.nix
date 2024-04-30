@@ -9,7 +9,8 @@
     ./tty-login.nix
 
     # ./x11/xfce-xmonad.nix
-    ./x11/xmonad-xfce.nix
+    # ./x11/xmonad-xfce.nix
+    ./x11/xmonad-lxde.nix
 
     ./bluetooth.nix
     ./remap/remap.nix
@@ -35,6 +36,6 @@
     # https://github.com/ryan4yin/nix-config/blob/main/modules/nixos/desktop/graphic.nix
     ./graphic.nix
 
-    ./dropbox.nix
+    # ./dropbox.nix
   ];
 }

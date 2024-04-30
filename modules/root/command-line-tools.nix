@@ -39,7 +39,8 @@
     cmake
 
     # cmd apps
-    htop
+    htop  # monitor
+    flameshot # A command-line screen capture utility
   ];
 
 }

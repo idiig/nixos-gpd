@@ -12,9 +12,9 @@
    -- trayer
    -- 'dtos-local-bin' (from dtos-core-repo)
 
-Config { font            = "CodingFontTobi 20"
-       , additionalFonts = [ "Noto Sans Mono CJK JP 11"
-                           , "Noto Sans Mono CJK HK 16"
+Config { font            = "CodingFontTobi 23"
+       , additionalFonts = [ "Noto Sans Mono CJK JP 16"
+                           , "Noto Sans Mono CJK HK 20"
                            , "Font Awesome 6 Free Solid 12"
                            , "Font Awesome 6 Brands 12"
                            ]
@@ -25,7 +25,7 @@ Config { font            = "CodingFontTobi 20"
        --   an integer for the percentage width, so 100 would be 100%.
        --   an integer for the minimum pixel height for xmobar, so 45 would force a height of at least 24 pixels.
        --   NOTE: The height should be the same as the trayer (system tray) height.
-       , position     = TopSize L 100 28
+       , position     = TopSize L 100 40
        , lowerOnStart = True
        , hideOnStart  = False
        , allDesktops  = True
@@ -43,11 +43,11 @@ Config { font            = "CodingFontTobi 20"
                         -- Time and date
                     , Run Date "<fn=2>時</fn> %H:%M (%d)" "date" 50
                         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
-                    , Run Com "/etc/trayer/trayer-padding-icon.sh" [] "trayerpad" 10
+                    , Run Com "/etc/scripts/trayer-padding-icon.sh" [] "trayerpad" 10
                         -- Prints out the left side items such as workspaces, layout, etc.
                     , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %UnsafeStdinReader% }{ <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e nvim .log/notify.log`>%notify-log%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%cpu%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%memory%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000>%battery%</fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(dt/year-calendar))'`>%date%</action></fc></box> |%trayerpad%  "
+       , template = " %UnsafeStdinReader% }{ <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e nvim .log/notify.log`>%notify-log%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%cpu%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%memory%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000>%battery%</fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(dt/year-calendar))'`>%date%</action></fc></box> %trayerpad%  "
        }
