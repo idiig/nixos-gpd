@@ -11,7 +11,7 @@
    -- trayer
    -- 'dtos-local-bin' (from dtos-core-repo)
 
-Config { font            = "CodingFontTobi 9"
+Config { font            = "Sans Regular 9"
        , additionalFonts = [ "Noto Sans Mono CJK JP 11"
                            , "Noto Sans Mono CJK HK 11"
                            , "Font Awesome 6 Free Solid 12"

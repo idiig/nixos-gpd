@@ -13,7 +13,7 @@ in
   programs.rofi = {
     enable = true;
     cycle = true;
-    font = "CodingFontTobi 45";
+    font = "Sans Regular 30";
     plugins = with pkgs; [
       rofi-screenshot
       rofi-pulse-select

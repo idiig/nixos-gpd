@@ -22,10 +22,11 @@ in
       dmenu # Expected by xmonad
       gxmessage # Used by xmonad to show help
 
+      feh
       xorg.xkill # Kill X windows with the cursor
-      librsvg
-      gdk-pixbuf
-      gnome.adwaita-icon-theme
+      # librsvg
+      # gdk-pixbuf
+      # gnome.adwaita-icon-theme
       # xscreensaver
 
       networkmanagerapplet # network control UI
@@ -43,7 +44,7 @@ in
     ];
     etc = {
       "xmobar".source = ./xmonad/xmobar; # xmobar theme
-      "dtos-backgrounds".source = ./dtos-backgrounds; # xmobar theme
+      "backgrounds".source = ./backgrounds; # xmobar theme
       "scripts/trayer-padding-icon.sh" = {
         source = ./scripts/trayer-padding-icon.sh;
         mode = "0755";  # make excutable
@@ -84,8 +85,14 @@ in
     # muteKernelMessages = false;
     muteKernelMessages = true;
 
-    lockOn.suspend = true;
-    lockOn.hibernate = true;
+    # lock on target
+    lockOn = {
+      suspend = true;
+      hibernate = true;
+      extraTargets = [
+        "display-manager.service"
+      ];
+    };
 
     allowAnyUser = true;
 

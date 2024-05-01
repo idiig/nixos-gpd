@@ -43,6 +43,12 @@
     };
   };
 
+  # Lock screen
+  programs.slock = {
+    enable = true;
+    package = pkgs.slock;
+  };
+
   # Display manager
   services.xserver = {
     enable = true;

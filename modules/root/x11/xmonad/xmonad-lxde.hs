@@ -75,10 +75,10 @@ import Colors.EmacsStandard
 -- import Colors.DoomOne
 
 myFontTab :: String
-myFontTab = "xft:CodingFontTobi:regular:size=5:antialias=true:hinting=true"
+myFontTab = "xft:Sans Regular:regular:size=6:antialias=true:hinting=true"
 
 myFontGrid :: String
-myFontGrid = "xft:CodingFontTobi:regular:size=18:antialias=true:hinting=true"
+myFontGrid = "xft:Sans Regular:regular:size=18:antialias=true:hinting=true"
 
 myModMask :: KeyMask
 myModMask = mod4Mask        -- Sets modkey to super/windows key
@@ -130,7 +130,7 @@ myStartupHook = do
   -- Select only =ONE= of the following four ways to set the wallpaper.
   -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
   -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-  spawnOnce "feh --randomize --bg-center /etc/dtos-backgrounds/*"  -- feh set random wallpaper
+  spawnOnce "feh --randomize --bg-fill /etc/dtos-backgrounds/*"  -- feh set random wallpaper
   -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
   setWMName "LG3D"
 
@@ -369,7 +369,7 @@ myTabTheme = def { fontName            = myFontTab
 -- Theme for showWName which prints current workspace when you change workspaces.
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
-  { swn_font              = "xft:CodingFontTobi:size=60"
+  { swn_font              = "xft:Sans Regular:size=60"
   , swn_fade              = 1.0
   , swn_bgcolor           = colorBack
   , swn_color             = colorFore
@@ -441,7 +441,7 @@ subtitle' x = ((0,0), NamedAction $ map toUpper
 
 showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
 showKeybindings x = addName "Show Keybindings" $ io $ do
-  h <- spawnPipe $ "yad --text-info --fontname=\"CodingFontTobi 12\" --fore=#46d9ff back=#282c36 --center --geometry=1200x800 --title \"XMonad keybindings\""
+  h <- spawnPipe $ "yad --text-info --fontname=\"Sans Regular 12\" --center --geometry=1200x800 --title \"XMonad keybindings\""
   --hPutStr h (unlines $ showKm x) -- showKM adds ">>" before subtitles
   hPutStr h (unlines $ showKmSimple x) -- showKmSimple doesn't add ">>" to subtitles
   hClose h

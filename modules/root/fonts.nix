@@ -18,6 +18,8 @@
       dina-font
       proggyfonts
       dejavu_fonts
+
+      nerdfonts
     ];
     
     fontconfig = {

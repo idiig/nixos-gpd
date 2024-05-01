@@ -25,6 +25,7 @@ in
     # image-processor
     ./app/image-processor/evince.nix
     ./app/image-processor/inkscape.nix
+    ./app/image-processor/gimp.nix
 
     # multimedia
     ./app/multimedia/mocp.nix
@@ -50,7 +51,9 @@ in
 
     # appearance related
     ./app/appearance/picom.nix
-    ./app/appearance/dunst.nix
+
+    # notify
+    ./app/notifier/dunst.nix
 
     # UI
     # ./ui/gtk.nix

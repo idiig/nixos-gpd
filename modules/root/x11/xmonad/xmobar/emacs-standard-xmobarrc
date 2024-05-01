@@ -15,8 +15,8 @@
 Config { font            = "CodingFontTobi 23"
        , additionalFonts = [ "Noto Sans Mono CJK JP 16"
                            , "Noto Sans Mono CJK HK 20"
-                           , "Font Awesome 6 Free Solid 12"
-                           , "Font Awesome 6 Brands 12"
+                           , "3270 Nerd Font 25"
+                           , "3270 Nerd Font 24"
                            ]
        , bgColor      = "#dcdcdc"
        , fgColor      = "#000000"
@@ -34,6 +34,16 @@ Config { font            = "CodingFontTobi 23"
        , commands = [
                         -- View notify.log file (~/.log/notify-log/notify.log)
                       Run Com "echo" ["<fn=2>訊</fn> View"] "notify-log" 3600
+                        -- NixOS logo
+                    , Run Com "echo" ["<fn=4>\xf1105</fn>"] "nixos" 3600
+                        -- Xmonad logo
+                    , Run Com "echo" ["<fn=4>\xf35e</fn>"] "xmonad" 3600
+                        -- Haskell logo
+                    , Run Com "echo" ["<fn=4>\xe61f</fn>"] "haskell" 3600
+                        -- Seperator
+                    , Run Com "echo" ["<fn=3>\xe0c6</fn>"] "sep1" 3600
+                        -- Cpu usage in percent
+                    , Run Com "echo" ["<fn=3>\xe0c7\xe0c5\xe0c7\xe0c5</fn>"] "sep2" 3600
                         -- Cpu usage in percent
                     , Run Cpu ["-t", "<fn=2>芯</fn> <total>%","-H","50","--high","red"] 20
                         -- Ram used number and percent
@@ -49,5 +59,5 @@ Config { font            = "CodingFontTobi 23"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %UnsafeStdinReader% }{ <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e nvim .log/notify.log`>%notify-log%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%cpu%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%memory%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000>%battery%</fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(dt/year-calendar))'`>%date%</action></fc></box> %trayerpad%  "
+       , template = " <box type=Bottom width=2 mb=2 color=#bcbcbc><fc=#000000><action=`alacritty -e lxsession-logout`>%xmonad%</action></fc></box>  | %UnsafeStdinReader%}{ <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e nvim .log/notify.log`>%notify-log%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%cpu%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`alacritty -e htop`>%memory%</action></fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000>%battery%</fc></box>  <box type=Bottom width=2 mb=2 color=#000000><fc=#000000><action=`emacsclient -c -a 'emacs' --eval '(doom/window-maximize-buffer(dt/year-calendar))'`>%date%</action></fc></box> %trayerpad% "
        }

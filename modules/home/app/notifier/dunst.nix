@@ -8,12 +8,12 @@
     settings = {
       global = {
         width = 200;
-        height = 50;
+        height = 100;
         offset = "10x28";
         origin = "top-right";
         transparency = 0;
         frame_color = "#dfdfdf";
-        font = "CodingFontTobi 13";
+        font = "Sans Regular 9";
       };
       urgency_normal = {
         background = "#dcdcdc";
