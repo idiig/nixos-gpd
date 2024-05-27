@@ -13,12 +13,12 @@ value=$2
 # main
 case $action in
     increase)
-        pamixer i "$value"
+        pamixer -i "$value"
         # get status
         volume=$(pamixer --get-volume)
        ;;
     decrease)
-        pamixer d "$value"
+        pamixer -d "$value"
         # get status
         volume=$(pamixer --get-volume)
         ;;

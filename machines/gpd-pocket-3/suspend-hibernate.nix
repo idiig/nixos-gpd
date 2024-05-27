@@ -10,6 +10,9 @@ in
 
 {
 
+  # services.logind.lidSwitch = "suspend-then-hibernate";
+
+  # https://gist.github.com/mattdenner/befcf099f5cfcc06ea04dcdd4969a221
   systemd.services."awake-after-suspend-for-a-time" = {
     description = "Sets up the suspend so that it'll wake for hibernation only if not on AC power";
     wantedBy = [ "suspend.target" ];
@@ -47,4 +50,3 @@ in
   };
 
 }
-

@@ -10,6 +10,7 @@ in
     # editors
     ./app/editor/emacs.nix
     ./app/editor/vim.nix
+    ./app/editor/helix.nix
 
     # security-privacy
     ./app/security-privacy/ssh.nix
@@ -22,8 +23,11 @@ in
     ./app/browser/qutebrowser.nix
     # ./app/browser/firefox.nix
 
+    # pdf reader
+    ./app/pdf-reader/zathura.nix
+    ./app/pdf-reader/evince.nix
+
     # image-processor
-    ./app/image-processor/evince.nix
     ./app/image-processor/inkscape.nix
     ./app/image-processor/gimp.nix
 

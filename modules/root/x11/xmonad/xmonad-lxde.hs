@@ -122,15 +122,15 @@ myStartupHook = do
   spawnOnce "picom"
   spawnOnce "nm-applet"
   -- spawnOnce "volumeicon"
+  spawnOnce "fcitx5"
   spawnOnce "/etc/scripts/notify-log $HOME/.log/notify.log"
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
-  -- spawn "fcitx5 &"
   spawn ("sleep 2 && trayer --iconspacing 6 --edge top --align right --widthtype request --padding 0 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 40")
 
   -- Select only =ONE= of the following four ways to set the wallpaper.
   -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
   -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-  spawnOnce "feh --randomize --bg-fill /etc/dtos-backgrounds/*"  -- feh set random wallpaper
+  spawnOnce "feh --randomize --bg-center /etc/backgrounds/*"  -- feh set random wallpaper
   -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
   setWMName "LG3D"
 
@@ -678,7 +678,7 @@ main = do
         , ppHiddenNoWindows = xmobarColor color05 "" . clickable
           -- Title of active window
         , ppTitle = xmobarColor color16 "" . wrap
-                    "<fn=1>" "</fn>" . shorten 25
+                    "<fn=1>" "</fn>" . shorten 15
           -- Separator character
         , ppSep =  "<fc=" ++ color09 ++ "> | </fc>"
           -- Urgent workspace

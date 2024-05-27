@@ -90,7 +90,7 @@ in
       suspend = true;
       hibernate = true;
       extraTargets = [
-        "display-manager.service"
+        # "display-manager.service"
       ];
     };
 

@@ -4,10 +4,10 @@ _:
 
   # Power management.
   services.logind = {
-    lidSwitch = "suspend";
+    lidSwitch = "suspend-then-hibernate";
     lidSwitchDocked = "ignore";
-    lidSwitchExternalPower = "suspend";
-    powerKey = "suspend";
+    lidSwitchExternalPower = "ignore";
+    powerKey = "hibernate";
     powerKeyLongPress = "poweroff";
   };
 
