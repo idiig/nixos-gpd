@@ -15,6 +15,7 @@
     jq # A lightweight and flexible command-line JSON processor
     silver-searcher # Ag
     ripgrep
+    fd
     fzf # fuzzy search
     ranger
     lsof
