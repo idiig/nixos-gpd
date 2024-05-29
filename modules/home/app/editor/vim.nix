@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     # vim  # comment out for conflict with root/vim
     neovim
+    # nixvim
   ];
 
   # Vim

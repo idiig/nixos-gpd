@@ -9,6 +9,13 @@ modmap:
     Esc: Capslock
 
 keymap:
+
+# TODO: Check this block
+# - name: ColonSemicolonRemap
+#   remap:
+#     SEMICOLON: COLON
+#     COLON: SEMICOLON
+
 - name: Emacs
   application:
     not: [Emacs, Code, Xfce4-terminal, Alacritty]

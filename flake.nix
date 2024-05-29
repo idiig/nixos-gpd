@@ -6,14 +6,19 @@
     # pkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Extra
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     flake-util.url = "github:numtide/flake-utils";
     xremap-flake.url = "github:xremap/nix-flake";
-
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { 
@@ -25,6 +30,7 @@
     home-manager,    # for users/<usr>/default.nix
     nixos-hardware,  # for machines/<machine>/hardware-configuration.nix
     xremap-flake,    # for remap; modules/root/remap/remap.nix
+    # nixvim,          # for nixvim; module/root/vim.nix
     ... 
   }@inputs:
 
