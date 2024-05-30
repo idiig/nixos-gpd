@@ -71,5 +71,6 @@ in
     # languages
     ./lang/python.nix
     ./lang/nodejs.nix
+    ./lang/deno.nix
   ];
 }
