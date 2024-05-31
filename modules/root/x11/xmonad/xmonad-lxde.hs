@@ -678,7 +678,7 @@ main = do
         , ppHiddenNoWindows = xmobarColor color05 "" . clickable
           -- Title of active window
         , ppTitle = xmobarColor color16 "" . wrap
-                    "<fn=1>" "</fn>" . shorten 15
+                    "<fn=1>" "</fn>" . shorten 10
           -- Separator character
         , ppSep =  "<fc=" ++ color09 ++ "> | </fc>"
           -- Urgent workspace

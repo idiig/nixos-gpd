@@ -72,5 +72,7 @@ in
     ./lang/python.nix
     ./lang/nodejs.nix
     ./lang/deno.nix
+    ./lang/quarto.nix
+    ./lang/r.nix
   ];
 }
