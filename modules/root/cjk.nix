@@ -21,7 +21,7 @@
 
     # Input methods
     inputMethod = {
-      enabled = "fcitx5"; 
+      enable = "fcitx5";
       fcitx5.addons = with pkgs; [
         fcitx5-gtk
         # Chinese

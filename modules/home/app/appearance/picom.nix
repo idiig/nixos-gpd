@@ -4,18 +4,27 @@
   services.picom = {
     enable = true;
     activeOpacity = 1.0;
-    inactiveOpacity = 0.9;
+    inactiveOpacity = 0.95;
+    opacityRules = [
+      "100:class_g = 'pdfpc' && !_NET_WM_STATE@:32a"
+    ];
     fade = false;
     fadeDelta = 5;
     fadeExclude = [
       "class_g = 'slop'"
+      "class_g = 'eww-ewwbar'"
+      "class_g = 'trayer'"
+      "class_g = 'rofi'"
+      "class_g = 'pdfpc'"
     ];
     settings = {
       popup_menu = { opacity = 1.0; };
       dropdown_menu = { opacity = 1.0; };
       frame-opacity = 1;
       corner-radius = 0;
-      rounded-corners-exclude = "class_g != 'eww-acpi_info'";
+      rounded-corners-exclude = [
+        "class_g != 'eww-acpi_info'"
+      ];
     };
     shadow = true;
     shadowOpacity = 0.5;
