@@ -4,7 +4,7 @@
   services.picom = {
     enable = true;
     activeOpacity = 1.0;
-    inactiveOpacity = 0.95;
+    inactiveOpacity = 1.0;
     opacityRules = [
       "100:class_g = 'pdfpc' && !_NET_WM_STATE@:32a"
     ];
