@@ -8,8 +8,6 @@ in
   imports = [
 
     # editors
-    ./app/editor/emacs.nix
-    ./app/editor/vim.nix
     ./app/editor/helix.nix
 
     # security-privacy
@@ -21,11 +19,10 @@ in
 
     # browser
     ./app/browser/qutebrowser.nix
-    # ./app/browser/firefox.nix
+    ./app/browser/firefox.nix
 
     # pdf reader
     ./app/pdf-reader/zathura.nix
-    ./app/pdf-reader/evince.nix
 
     # image-processor
     ./app/image-processor/inkscape.nix
@@ -66,13 +63,6 @@ in
     # default dotfiles
     # ./misc/xfce4/default.nix
     ./misc/fcitx5/default.nix
-    ./misc/direnv.nix
-
-    # languages
-    ./lang/python.nix
-    ./lang/nodejs.nix
-    ./lang/deno.nix
-    ./lang/quarto.nix
-    ./lang/r.nix
-  ];
+    
+    ];
 }

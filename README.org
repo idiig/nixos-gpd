@@ -1,0 +1,87 @@
+#+title: 我的NixOS笔记配置
+* Change Log
+* =flake= 入口
+#+begin_src nix
+  {
+    description = "";
+
+    inputs = {
+
+      # pkgs
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+      nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+      # Extra
+      home-manager = {
+        url = "github:nix-community/home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+      nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+      flake-util.url = "github:numtide/flake-utils";
+
+      # Remap
+      xremap-flake.url = "github:xremap/nix-flake";
+    };
+
+    outputs = { 
+      self, 
+        nixpkgs,
+        nixpkgs-unstable,
+
+        flake-util,
+        home-manager,    # for users/<usr>/default.nix
+        nixos-hardware,  # for machines/<machine>/hardware-configuration.nix
+        
+        xremap-flake,    # for remap; modules/root/remap/remap.nix
+        ... 
+    }@inputs:
+
+      let
+        myVars = import ./myvars/gpd-pocket-3-idiig.nix;
+        system = "x86_64-linux";
+        specialArgs = inputs // { inherit system; };
+      in 
+
+        {
+
+          nixosConfigurations.gpd-pocket-3 = nixpkgs-unstable.lib.nixosSystem {
+
+            system = system;
+            specialArgs = specialArgs;
+
+            modules = [
+              # Machine related extra config
+              # Automatically generated configuration.nix (Delete boot part)
+              ./machines/${myVars.machine}/configuration.nix
+              ./machines/${myVars.machine}/extra-hardware.nix
+
+              # General setting
+              ./modules/root/default.nix
+
+              # User setting
+              ./users/${myVars.user}/default.nix
+
+            ];
+          };
+        };
+  }
+#+end_src
+* 我的用户
+** 主用户 =idiig=
+
+#+begin_src nix
+  _:
+  {
+    users.users.idiig = {
+      # isSystemUser = true;
+      isNormalUser = true;
+      home = "/home/idiig";
+      group = "system";
+      extraGroups = [ "wheel" ];  # to use sudo
+    };
+
+    users.groups.system = {};
+  }
+#+end_src
+** 副用户 =avionplat=
+* 我的设备
