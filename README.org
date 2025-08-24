@@ -35,40 +35,39 @@
         xremap-flake,    # for remap; modules/root/remap/remap.nix
         ... 
     }@inputs:
-
-      let
-        myVars = import ./myvars/gpd-pocket-3-idiig.nix;
-        system = "x86_64-linux";
-        specialArgs = inputs // { inherit system; };
-      in 
-
-        {
-
-          nixosConfigurations.gpd-pocket-3 = nixpkgs-unstable.lib.nixosSystem {
-
-            system = system;
-            specialArgs = specialArgs;
-
+      flake-utils.lib.eachSystem [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+      ] (system: {
+        nixosConfigurations = {
+          gpd-pocket-3 = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = inputs // { inherit system; };
             modules = [
-              # Machine related extra config
-              # Automatically generated configuration.nix (Delete boot part)
-              ./machines/${myVars.machine}/configuration.nix
-              ./machines/${myVars.machine}/extra-hardware.nix
-
-              # General setting
+              ./machines/gpd-pocket-3/configuration.nix
+              ./machines/gpd-pocket-3/extra-hardware.nix
               ./modules/root/default.nix
+              ./users/idiig/default.nix
+            ];
+          };
 
-              # User setting
-              ./users/${myVars.user}/default.nix
-
+          wsl2 = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = inputs // { inherit system; };
+            modules = [
+              ./modules/root/default.nix
+              ./users/wsl2/default.nix
             ];
           };
         };
+      });
   }
 #+end_src
 * 我的用户
+** 根用户
+** Home 通用
 ** 主用户 =idiig=
-
 #+begin_src nix
   _:
   {

@@ -2,7 +2,7 @@
 :GPTEL_MODEL: gpt-4o
 :GPTEL_BACKEND: ChatGPT
 :GPTEL_SYSTEM: 你是一个精通nixos配置的专业人士，请给我nixos配置方面的专业
-:GPTEL_BOUNDS: ((response (1 1485) (3220 5438) (5520 8174)))
+:GPTEL_BOUNDS: ((response (1 1485) (3220 5438) (5520 8174) (10392 10695) (10697 10738) (10739 10744) (10745 10802) (10804 10844) (10846 10887) (10888 10899) (10900 10916) (10918 10985) (10987 10999) (11000 11013) (11014 11056) (11058 11127) (11129 11156) (11157 11170) (11171 11197) (11199 11222) (11224 11228) (11229 11238) (11239 11272) (11274 11312) (11314 11359) (11360 11371) (11372 11384) (11386 11446) (11448 11475) (11476 11489) (11490 11515) (11517 11540) (11542 11545) (11546 11553) (11554 11557) (11559 12151)))
 :END:
 当然！如果你需要帮助配置NixOS或有任何具体的问题，以下是一些专业建议和步骤，可以帮助你更好地管理和配置你的NixOS系统：
 
@@ -308,5 +308,151 @@
    #+end_src
 
 通过这些方法，可以提升配置的灵活性和可维护性，特别是在需管理多个设备时，而不依赖于手动创建每一个机器独立的变量文件。选择适合你项目复杂度的方案即可。
+
+*** 改进
+你觉得下面这样如何呢？
+#+begin_src nix
+  {
+    description = "";
+
+    inputs = {
+
+      # pkgs
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+      nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+      # Extra
+      home-manager = {
+        url = "github:nix-community/home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+      nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+      flake-util.url = "github:numtide/flake-utils";
+
+      # Remap
+      xremap-flake.url = "github:xremap/nix-flake";
+    };
+
+    outputs = { 
+      self, 
+        nixpkgs,
+        nixpkgs-unstable,
+
+        flake-util,
+        home-manager,    # for users/<usr>/default.nix
+        nixos-hardware,  # for machines/<machine>/hardware-configuration.nix
+        
+        xremap-flake,    # for remap; modules/root/remap/remap.nix
+        ... 
+    }@inputs:
+
+      let
+        system = "x86_64-linux";
+        specialArgs = inputs // { inherit system; };
+      in 
+
+        {
+
+          nixosConfigurations = {
+            gpd-pocket-3 = nixpkgs-unstable.lib.nixosSystem {
+
+              system = system;
+              specialArgs = specialArgs;
+
+              modules = [
+                # Machine related extra config
+                # Automatically generated configuration.nix (Delete boot part)
+                ./machines/gpd-pocket-3/configuration.nix
+                ./machines/gpt-pocket-3/extra-hardware.nix
+
+                # Root setting
+                ./modules/root/default.nix
+                
+                # User setting
+                ./users/idiig/default.nix
+              ];
+              
+            };
+
+            wsl2 = nixpkgs-unstable.lib.nixosSystem {
+
+              system = system;
+              specialArgs = specialArgs;
+
+              modules = [
+                # Machine related extra config
+                ./machines/wsl2/configuration.nix
+
+                # Root setting
+                ./modules/root/default.nix
+                
+                # User setting
+                ./users/wsl2/default.nix
+              ];
+              
+            };
+          };
+        };
+  }
+#+end_src
+
+
+你的配置已经相当清晰，并且在模块化管理多个设备方面看起来也很合理。下面是一些潜在的改进建议，可以进一步优化和增强可维护性：
+
+1. *明确命名和注释*：
+   - 确保目录和文件命名的一致性，比如=gpd-pocket-3=和=gpt-pocket-3=似乎有打字错误。
+   - 对配置块添加适当的注释，以提高可读性和可维护性。
+
+2. *系统和变量的动态处理*：
+   - 如果你需要支持多个系统架构，可以使用=flake-utils=自动处理不同的=system=，比如利用=flake-utils.lib.eachSystem=为不同系统生成配置。
+ 
+   #+begin_src nix
+     outputs = { self, nixpkgs, ... }@inputs:
+       flake-utils.lib.eachSystem [ "x86_64-linux" ] (system: {
+         nixosConfigurations = {
+           gpd-pocket-3 = nixpkgs.lib.nixosSystem {
+             inherit system;
+             specialArgs = inputs // { inherit system; };
+             modules = [
+               ./machines/gpd-pocket-3/configuration.nix
+               ./machines/gpd-pocket-3/extra-hardware.nix
+               ./modules/root/default.nix
+               ./users/idiig/default.nix
+             ];
+           };
+
+           wsl2 = nixpkgs.lib.nixosSystem {
+             inherit system;
+             specialArgs = inputs // { inherit system; };
+             modules = [
+               ./machines/wsl2/configuration.nix
+               ./modules/root/default.nix
+               ./users/wsl2/default.nix
+             ];
+           };
+         };
+       });
+   #+end_src
+
+3. *减少重复代码*：
+   - 如果多个设备共享配置（比如相同的root或用户设置），考虑在模块中提取公共部分，以减少重复。
+   - 可以创建=shared-modules/=目录，导入每个系统所需的公共模块。
+
+   #+begin_src nix
+   modules = [
+     ./machines/gpd-pocket-3/configuration.nix
+     ./machines/gpd-pocket-3/extra-hardware.nix
+     ./shared-modules/root-settings.nix
+     ./users/idiig/default.nix
+   ];
+   #+end_src
+
+4. *错误处理和验证*：
+   - 使用一些Nix语言提供的功能来检查和验证配置，比如=assert=语句，来确保必需的变量和条件得到满足。
+
+5. *输入的版本锁定*：
+   - 在=inputs=中明确锁定版本，建议为非稳定的来源（比如=nixos-unstable=）指定版本或commit，以确保构建的可重复性。
+
+通过这些调整，你可以在保持当前配置风格的同时，进一步增强灵活性和可维护性。确保使用版本控制（比如Git）来管理你的配置变化，以便在需要时回滚并跟踪更改。
 
 *** 
