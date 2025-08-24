@@ -1,9 +1,12 @@
 #+title: 我的NixOS笔记配置
 * Change Log
 * =flake= 入口
+:PROPERTIES:
+:header-args: :noweb yes :tangle flake.nix
+:END:
 #+begin_src nix
   {
-    description = "";
+    description = "A basic nixos configurations";
 
     inputs = {
 
@@ -64,7 +67,7 @@
       });
   }
 #+end_src
-* 我的用户
+* 用户
 ** 根用户
 ** Home 通用
 ** 主用户 =idiig=
@@ -83,4 +86,11 @@
   }
 #+end_src
 ** 副用户 =avionplat=
-* 我的设备
+* 模块
+** 最小限度共通模块
+** 可选共通模块
+** NixOS 特有模块
+** MacOS 特有模块
+** 额外硬件模块
+*** Joycons
+*** Keyball 44
