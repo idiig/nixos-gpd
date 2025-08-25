@@ -9,7 +9,7 @@ TeXLive 这类工具。
 :header-args: :noweb yes :tangle flake.nix
 :END:
 =flake.nix= 是整个配置的入口文件，统筹管理各个设备与用户的配置。
-#+begin_src nix
+#+begin_src nix :tangle ./flake.nix
   {
     description = "A basic nixos configurations";
 
@@ -544,6 +544,248 @@ TeXLive 这类工具。
 ** TODO uConsole
 * 模块
 ** 最小共通模块
+*** Shell
+**** ZSH
+#+begin_src nix :tangle .modules/basic/shell/zsh.nix
+  { pkgs, ...}:
+
+  {   
+    programs.zsh = {
+      enable = true;
+      autosuggestion.enable = true;
+      enableCompletion = true;
+      shellAliases = {
+        sl = "exa";
+        ls = "exa";
+        l = "exa -l";
+        la = "exa -la";
+        ip = "ip --color=auto";
+        sudoe = "sudo -E HOME=$HOME";  # use user environment to edit root files
+        sup = "su --preserve-environment";  # the same
+        ranger = "ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd \"$LASTDIR\"";
+      };
+      
+      initExtra = ''
+        bindkey '^ ' autosuggest-accept
+        AGKOZAK_CMD_EXEC_TIME=5
+        AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
+        AGKOZAK_COLORS_PROMPT_CHAR='magenta'
+        AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
+        AGKOZAK_MULTILINE=0
+        AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
+        autopair-init
+      '';
+
+      plugins = with pkgs; [
+        {
+          name = "agkozak-zsh-prompt";
+          src = fetchFromGitHub {
+            owner = "agkozak";
+            repo = "agkozak-zsh-prompt";
+            rev = "v3.7.0";
+            sha256 = "1iz4l8777i52gfynzpf6yybrmics8g4i3f1xs3rqsr40bb89igrs";
+          };
+          file = "agkozak-zsh-prompt.plugin.zsh";
+        }
+        {
+          name = "formarks";
+          src = fetchFromGitHub {
+            owner = "wfxr";
+            repo = "formarks";
+            rev = "8abce138218a8e6acd3c8ad2dd52550198625944";
+            sha256 = "1wr4ypv2b6a2w9qsia29mb36xf98zjzhp3bq4ix6r3cmra3xij90";
+          };
+          file = "formarks.plugin.zsh";
+        }
+        {
+          name = "zsh-syntax-highlighting";
+          src = fetchFromGitHub {
+            owner = "zsh-users";
+            repo = "zsh-syntax-highlighting";
+            rev = "0.6.0";
+            sha256 = "0zmq66dzasmr5pwribyh4kbkk23jxbpdw4rjxx0i7dx8jjp2lzl4";
+          };
+          file = "zsh-syntax-highlighting.zsh";
+        }
+        {
+          name = "zsh-abbrev-alias";
+          src = fetchFromGitHub {
+            owner = "momo-lab";
+            repo = "zsh-abbrev-alias";
+            rev = "637f0b2dda6d392bf710190ee472a48a20766c07";
+            sha256 = "16saanmwpp634yc8jfdxig0ivm1gvcgpif937gbdxf0csc6vh47k";
+          };
+          file = "abbrev-alias.plugin.zsh";
+        }
+        {
+          name = "zsh-autopair";
+          src = fetchFromGitHub {
+            owner = "hlissner";
+            repo = "zsh-autopair";
+            rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
+            sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
+          };
+          file = "autopair.zsh";
+        }
+      ];
+    };
+
+    programs.fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };  
+   
+    home.file = {
+      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+      # # symlink to the Nix store copy.
+      # ".screenrc".source = dotfiles/screenrc;
+
+      # # You can also set the file content immediately.
+      # ".gradle/gradle.properties".text = ''
+      #   org.gradle.console=verbose
+      #   org.gradle.daemon.idletimeout=3600000
+      # '';
+    };
+
+  }
+#+end_src
+**** TODO Nushell
+*** Terminal Emulator
+**** Alacritty
+#+begin_src nix :tangle ./modules/basics/terminal/alacritty.nix
+  { pkgs, ... }:
+
+  {  
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        env = {
+          "TERM" = "xterm-256color";
+        };
+
+        # background_opacity = 1.0;
+
+        window = {
+          padding.x = 10;
+          padding.y = 8;
+          decorations = "None";
+        };
+
+        font = {
+          size = 12;
+          # use_thin_strokes = true;
+
+          # normal.family = "FuraCode Nerd Font";
+          # bold.family = "FuraCode Nerd Font";
+          # italic.family = "FuraCode Nerd Font";
+        };
+
+        cursor.style = "Beam";
+
+        shell = {
+          program = "zsh";
+          args = [
+            "-c"
+            "tmux"
+          ];
+        };
+
+        colors = {
+          
+          primary = {
+            background = "0x202020";
+            foreground = "0xd0d0d0";
+          };
+
+  	      normal = {
+            black = "0x000000";
+            red = "0xc50f1f";
+            green = "0x26a269";
+            yellow = "0xa2734c";
+            blue = "0x12488b";
+            magenta = "0xa347ba";
+            cyan = "0x2aa1b3";
+            white = "0xd0d0d0";
+          };
+
+        	bright = {
+            black = "0x555753";
+            red = "0xef2929";
+            green = "0x0d7a0d";
+            yellow = "0xc17d11";
+            blue = "0x1a5fb4";
+            magenta = "0xbe3fbc";
+            cyan = "0x16a2b4";
+            white = "0xffffff";
+          };
+        };
+        
+      };
+    };
+  }
+#+end_src
+**** TODO Kitty
+**** TODO Gosty
+*** git
+#+begin_src nix
+  { pkgs, ... }: 
+
+  {
+    programs.git = {
+      enable = true;
+      lfs.enable = true;
+      # package = pkgs.gitFull;
+      userName = "idiig";
+      userEmail = "avionplat@hotmail.com";
+    };
+
+  }
+#+end_src
+*** SSH
+#+begin_src nix
+  {
+    lib,
+    ...
+  }: {
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    networking.firewall.enable = lib.mkDefault false;
+
+    programs = {
+      # The OpenSSH agent remembers private keys for you
+      # so that you don’t have to type in passphrases every time you make an SSH connection.
+      # Use `ssh-add` to add a key to the agent.
+      ssh.startAgent = true;
+      ssh.extraConfig = ''
+        Host github.com
+          IdentityFile /root/.ssh/id_ed25519
+      '';
+
+      # dconf is a low-level configuration system.
+      dconf.enable = true;
+
+    };
+
+    # Enable the OpenSSH daemon.
+    services.openssh = {
+      enable = true;
+      settings = {
+        X11Forwarding = true;
+        # root user is used for remote deployment, so we need to allow it
+        PermitRootLogin = "prohibit-password";
+        PasswordAuthentication = false; # disable password login
+      };
+      openFirewall = true;
+    };
+
+    # Add terminfo database of all known terminals to the system profile.
+    # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/nixos/modules/config/terminfo.nix
+    environment.enableAllTerminfo = true;
+  }
+#+end_src
+*** UNIX utils
 ** 可选共通模块
 ** NixOS 特有模块
 *** 窗口管理器
